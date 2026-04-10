@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Imperativo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --parchment: #f5efe0;
+    --accent: #8b1a1a;
+    --line: #c9b99a;
+    --gold: #c4922a;
+    --fade: #7a6a52;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--parchment);
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 31px, var(--line) 31px, var(--line) 32px);
+    font-family: 'Source Serif 4', serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 48px 24px 64px;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--accent);
+    position: relative;
+  }
+
+  header::after {
+    content: '';
+    display: block;
+    width: 60%;
+    margin: 6px auto 0;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    color: var(--fade);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255,255,255,0.35);
+    box-shadow: 0 2px 24px rgba(139,26,26,0.07);
+  }
+
+  thead tr {
+    background: var(--accent);
+    color: var(--parchment);
+  }
+
+  thead th {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 18px;
+    text-align: center;
+  }
+
+  thead th:first-child { text-align: left; }
+
+  tbody tr {
+    border-bottom: 1px solid var(--line);
+    transition: background 0.15s;
+  }
+
+  tbody tr:hover { background: rgba(196,146,42,0.08); }
+
+  tbody tr.irregular { background: rgba(139,26,26,0.04); }
+  tbody tr.irregular:hover { background: rgba(139,26,26,0.1); }
+
+  tbody tr.section-header td {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(196,146,42,0.08);
+    padding: 7px 18px;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--line);
+  }
+
+  td {
+    padding: 9px 18px;
+    font-size: 1rem;
+    font-weight: 300;
+    vertical-align: middle;
+  }
+
+  td:first-child {
+    font-style: italic;
+    color: var(--fade);
+    font-weight: 400;
+    min-width: 140px;
+  }
+
+  td:not(:first-child) {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.05rem;
+  }
+
+  .cmd {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .irreg-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    background: var(--accent);
+    color: white;
+    border-radius: 2px;
+    padding: 1px 5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-left: 4px;
+    font-style: normal;
+    font-family: 'Source Serif 4', sans-serif;
+  }
+
+  .usted-note {
+    font-size: 0.78rem;
+    color: var(--fade);
+    font-style: italic;
+    margin-top: 14px;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px dashed var(--line);
+  }
+
+  .functions {
+    margin-top: 40px;
+    padding: 20px 24px;
+    border-left: 3px solid var(--gold);
+    background: rgba(255,255,255,0.4);
+  }
+
+  .functions h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .functions ol {
+    padding-left: 20px;
+    font-size: 0.88rem;
+    line-height: 2;
+    color: var(--fade);
+  }
+
+  .functions ol li span {
+    color: var(--ink);
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>El Imperativo</h1>
+    <p class="subtitle">Tryb rozkazujący · Formy i funkcje</p>
+  </header>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Bezokolicznik</th>
+        <th>Tú</th>
+        <th>Vosotros</th>
+        <th>Usted(es)</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- Regular verbs -->
+      <tr class="section-header"><td colspan="4">Regularne</td></tr>
+      <tr>
+        <td>hablar</td>
+        <td class="cmd">¡Habla!</td>
+        <td class="cmd">¡Hablad!</td>
+        <td class="cmd">¡Hable! / ¡Hablen!</td>
+      </tr>
+      <tr>
+        <td>comer</td>
+        <td class="cmd">¡Come!</td>
+        <td class="cmd">¡Comed!</td>
+        <td class="cmd">¡Coma! / ¡Coman!</td>
+      </tr>
+      <tr>
+        <td>abrir</td>
+        <td class="cmd">¡Abre!</td>
+        <td class="cmd">¡Abrid!</td>
+        <td class="cmd">¡Abra! / ¡Abran!</td>
+      </tr>
+
+      <!-- Stem-changing -->
+      <tr class="section-header"><td colspan="4">Z odmianą rdzenia (e→ie, o→ue)</td></tr>
+      <tr>
+        <td>pensar</td>
+        <td class="cmd">¡Piensa!</td>
+        <td class="cmd">¡Pensad!</td>
+        <td class="cmd">¡Piense! / ¡Piensen!</td>
+      </tr>
+      <tr>
+        <td>dormir</td>
+        <td class="cmd">¡Duerme!</td>
+        <td class="cmd">¡Dormid!</td>
+        <td class="cmd">¡Duerma! / ¡Duerman!</td>
+      </tr>
+
+      <!-- Reflexive -->
+      <tr class="section-header"><td colspan="4">Zwrotne</td></tr>
+      <tr>
+        <td>vestirse</td>
+        <td class="cmd">¡Vístete!</td>
+        <td class="cmd">¡Vestios!</td>
+        <td class="cmd">¡Vístase! / ¡Vístanse!</td>
+      </tr>
+      <tr>
+        <td>sentarse</td>
+        <td class="cmd">¡Siéntate!</td>
+        <td class="cmd">¡Sentaos!</td>
+        <td class="cmd">¡Siéntese! / ¡Siéntense!</td>
+      </tr>
+      <tr>
+        <td>levantarse</td>
+        <td class="cmd">¡Levántate!</td>
+        <td class="cmd">¡Levantaos!</td>
+        <td class="cmd">¡Levántese! / ¡Levántense!</td>
+      </tr>
+
+      <!-- Irregular -->
+      <tr class="section-header"><td colspan="4">Nieregularne <span style="font-style:normal;font-size:0.7rem;color:var(--accent)">★</span></td></tr>
+      <tr class="irregular">
+        <td>ir <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Ve!</td>
+        <td class="cmd">¡Id!</td>
+        <td class="cmd">¡Vaya! / ¡Vayan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>salir <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Sal!</td>
+        <td class="cmd">¡Salid!</td>
+        <td class="cmd">¡Salga! / ¡Salgan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>venir <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Ven!</td>
+        <td class="cmd">¡Venid!</td>
+        <td class="cmd">¡Venga! / ¡Vengan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>hacer <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Haz!</td>
+        <td class="cmd">¡Haced!</td>
+        <td class="cmd">¡Haga! / ¡Hagan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>poner <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Pon!</td>
+        <td class="cmd">¡Poned!</td>
+        <td class="cmd">¡Ponga! / ¡Pongan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>decir <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Di!</td>
+        <td class="cmd">¡Decid!</td>
+        <td class="cmd">¡Diga! / ¡Digan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>tener <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Ten!</td>
+        <td class="cmd">¡Tened!</td>
+        <td class="cmd">¡Tenga! / ¡Tengan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>ser <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Sé!</td>
+        <td class="cmd">¡Sed!</td>
+        <td class="cmd">¡Sea! / ¡Sean!</td>
+      </tr>
+      <tr class="irregular">
+        <td>traer <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Trae!</td>
+        <td class="cmd">¡Traed!</td>
+        <td class="cmd">¡Traiga! / ¡Traigan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>caer <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Cae!</td>
+        <td class="cmd">¡Caed!</td>
+        <td class="cmd">¡Caiga! / ¡Caigan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>oír <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Oye!</td>
+        <td class="cmd">¡Oíd!</td>
+        <td class="cmd">¡Oiga! / ¡Oigan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>ver <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Ve!</td>
+        <td class="cmd">¡Ved!</td>
+        <td class="cmd">¡Vea! / ¡Vean!</td>
+      </tr>
+      <tr class="irregular">
+        <td>conducir <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Conduce!</td>
+        <td class="cmd">¡Conducid!</td>
+        <td class="cmd">¡Conduzca! / ¡Conduzcan!</td>
+      </tr>
+      <tr class="irregular">
+        <td>estar <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Estate!</td>
+        <td class="cmd">¡Estad!</td>
+        <td class="cmd">¡Esté! / ¡Estén!</td>
+      </tr>
+      <tr class="irregular">
+        <td>dar <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Da!</td>
+        <td class="cmd">¡Dad!</td>
+        <td class="cmd">¡Dé! / ¡Den!</td>
+      </tr>
+      <tr class="irregular">
+        <td>saber <span class="irreg-badge">irreg.</span></td>
+        <td class="cmd">¡Sabe!</td>
+        <td class="cmd">¡Sabed!</td>
+        <td class="cmd">¡Sepa! / ¡Sepan!</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <p class="usted-note">
+    Ustedes = forma Usted + <strong>-n</strong> &nbsp;·&nbsp; np. <em>hablen, coman, abran, hagan, digan… den</em>
+  </p>
+
+  <div class="functions">
+    <h2>Funkcje imperativo</h2>
+    <ol>
+      <li><span>Mira, mira</span> — zwrócenie uwagi</li>
+      <li><span>¡Sácate el dedo de la nariz!</span> — rozkaz / polecenie</li>
+      <li><span>Beba agua, duerma mucho…</span> — udzielanie rady</li>
+      <li><span>Pasen, pasen, adelante</span> — zaproszenie do działania</li>
+      <li><span>Coge la línea 2 hasta Sol</span> — instrukcje / wskazówki</li>
+    </ol>
+  </div>
+</div>
+</body>
+</html>

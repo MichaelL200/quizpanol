@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imperativo Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Literata:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0e0b;
+    --card: #1a1814;
+    --border: #2e2b24;
+    --gold: #d4a843;
+    --gold-dim: #8a6e2a;
+    --text: #e8e0d0;
+    --muted: #6b6456;
+    --correct: #4caf87;
+    --wrong: #c0504a;
+    --input-bg: #211f1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Literata', serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px 64px;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  .wrap { position: relative; z-index: 1; width: 100%; max-width: 560px; }
+
+  header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    color: var(--gold);
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--text);
+  }
+
+  /* Progress */
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  .progress-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 36px 32px 32px;
+    position: relative;
+    animation: fadeSlide 0.3s ease;
+  }
+
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .prompt {
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+
+  .prompt strong {
+    font-family: 'DM Serif Display', serif;
+    color: var(--gold);
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
+
+  .hint {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+
+  .input-row {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .excl {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--gold-dim);
+    line-height: 1;
+    padding-top: 8px;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    caret-color: var(--gold);
+  }
+
+  input[type="text"]:focus { border-color: var(--gold-dim); }
+
+  input[type="text"].correct {
+    border-color: var(--correct);
+    color: var(--correct);
+    background: rgba(76,175,135,0.06);
+  }
+
+  input[type="text"].wrong {
+    border-color: var(--wrong);
+    color: var(--wrong);
+    background: rgba(192,80,74,0.06);
+    animation: shake 0.3s ease;
+  }
+
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+
+  .feedback {
+    margin-top: 14px;
+    font-size: 0.9rem;
+    min-height: 1.4em;
+    font-style: italic;
+  }
+
+  .feedback.correct { color: var(--correct); }
+  .feedback.wrong   { color: var(--wrong); }
+
+  /* Buttons */
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  button {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3px;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-check {
+    background: var(--gold);
+    color: var(--bg);
+    flex: 1;
+  }
+
+  .btn-check:hover { background: #e0b550; }
+  .btn-check:disabled { opacity: 0.4; cursor: default; }
+
+  .btn-skip {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .btn-skip:hover { border-color: var(--muted); color: var(--text); }
+
+  .btn-next {
+    background: var(--gold);
+    color: var(--bg);
+    flex: 1;
+  }
+
+  .btn-next:hover { background: #e0b550; }
+
+  /* Score screen */
+  .score-screen {
+    text-align: center;
+    padding: 48px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    animation: fadeSlide 0.4s ease;
+  }
+
+  .score-big {
+    font-family: 'DM Serif Display', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .score-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .score-msg {
+    font-size: 1.05rem;
+    color: var(--text);
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+
+  .btn-restart {
+    background: var(--gold);
+    color: var(--bg);
+    padding: 12px 32px;
+    font-size: 0.78rem;
+  }
+
+  .btn-restart:hover { background: #e0b550; }
+
+  /* Stats */
+  .stats {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 28px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .stat-val.good { color: var(--correct); }
+  .stat-val.bad  { color: var(--wrong); }
+
+  .stat-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* Mode switcher */
+  .mode-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .mode-btn {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 6px 12px;
+    border-radius: 2px;
+  }
+
+  .mode-btn.active {
+    border-color: var(--gold-dim);
+    color: var(--gold);
+    background: rgba(212,168,67,0.07);
+  }
+
+  .mode-btn:hover:not(.active) { border-color: var(--muted); color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="label">Ćwiczenie</div>
+    <h1>El <em>Imperativo</em></h1>
+  </header>
+
+  <div class="mode-row" id="modeRow">
+    <button class="mode-btn active" onclick="setMode('all')">Wszystkie</button>
+    <button class="mode-btn" onclick="setMode('tú')">Tú</button>
+    <button class="mode-btn" onclick="setMode('vosotros')">Vosotros</button>
+    <button class="mode-btn" onclick="setMode('usted')">Usted</button>
+    <button class="mode-btn" onclick="setMode('ustedes')">Ustedes</button>
+  </div>
+
+  <div class="progress-row">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">0 / 0</div>
+  </div>
+
+  <div id="quizArea"></div>
+</div>
+
+<script>
+const ALL_VERBS = [
+  // [bezokolicznik, tú, vosotros, usted, ustedes]
+  ["hablar",    "Habla",     "Hablad",    "Hable",    "Hablen"],
+  ["comer",     "Come",      "Comed",     "Coma",     "Coman"],
+  ["abrir",     "Abre",      "Abrid",     "Abra",     "Abran"],
+  ["pensar",    "Piensa",    "Pensad",    "Piense",   "Piensen"],
+  ["dormir",    "Duerme",    "Dormid",    "Duerma",   "Duerman"],
+  ["vestirse",  "Vístete",   "Vestios",   "Vístase",  "Vístanse"],
+  ["sentarse",  "Siéntate",  "Sentaos",   "Siéntese", "Siéntense"],
+  ["levantarse","Levántate", "Levantaos", "Levántese","Levántense"],
+  ["ir",        "Ve",        "Id",        "Vaya",     "Vayan"],
+  ["salir",     "Sal",       "Salid",     "Salga",    "Salgan"],
+  ["venir",     "Ven",       "Venid",     "Venga",    "Vengan"],
+  ["hacer",     "Haz",       "Haced",     "Haga",     "Hagan"],
+  ["poner",     "Pon",       "Poned",     "Ponga",    "Pongan"],
+  ["decir",     "Di",        "Decid",     "Diga",     "Digan"],
+  ["tener",     "Ten",       "Tened",     "Tenga",    "Tengan"],
+  ["ser",       "Sé",        "Sed",       "Sea",      "Sean"],
+  ["traer",     "Trae",      "Traed",     "Traiga",   "Traigan"],
+  ["caer",      "Cae",       "Caed",      "Caiga",    "Caigan"],
+  ["oír",       "Oye",       "Oíd",       "Oiga",     "Oigan"],
+  ["ver",       "Ve",        "Ved",       "Vea",      "Vean"],
+  ["conducir",  "Conduce",   "Conducid",  "Conduzca", "Conduzcan"],
+  ["estar",     "Estate",    "Estad",     "Esté",     "Estén"],
+  ["dar",       "Da",        "Dad",       "Dé",       "Den"],
+  ["saber",     "Sabe",      "Sabed",     "Sepa",     "Sepan"],
+];
+
+const PERSONS = ["Tú","Vosotros","Usted","Ustedes"];
+const COL     = [1, 2, 3, 4]; // indices into verb row
+
+let mode = 'all';
+let cards = [];
+let idx = 0;
+let correct = 0;
+let wrong = 0;
+let answered = false;
+
+function normalize(s) {
+  return s.trim()
+    .replace(/[¡!]/g,'')
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+}
+
+function buildCards(m) {
+  let list = [];
+  ALL_VERBS.forEach(v => {
+    PERSONS.forEach((p, i) => {
+      if (m === 'all' || m === p.toLowerCase()) {
+        list.push({ verb: v[0], person: p, answer: v[COL[i]] });
+      }
+    });
+  });
+  // shuffle
+  for (let i = list.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [list[i], list[j]] = [list[j], list[i]];
+  }
+  return list;
+}
+
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  startQuiz();
+}
+
+function startQuiz() {
+  cards = buildCards(mode);
+  idx = 0; correct = 0; wrong = 0;
+  renderCard();
+}
+
+function updateProgress() {
+  const total = cards.length;
+  const done = idx;
+  document.getElementById('progressFill').style.width = (done / total * 100) + '%';
+  document.getElementById('progressText').textContent = done + ' / ' + total;
+}
+
+function renderCard() {
+  updateProgress();
+  const area = document.getElementById('quizArea');
+
+  if (idx >= cards.length) {
+    renderScore();
+    return;
+  }
+
+  answered = false;
+  const c = cards[idx];
+
+  area.innerHTML = `
+    <div class="card" id="card">
+      <div class="card-number">${idx + 1} z ${cards.length}</div>
+      <div class="prompt">
+        Podaj formę <strong>${c.person}</strong> od czasownika <strong>${c.verb}</strong>
+      </div>
+      <div class="hint">Tryb rozkazujący · Imperativo</div>
+      <div class="input-row">
+        <span class="excl">¡</span>
+        <input type="text" id="ans" placeholder="wpisz formę…" autocomplete="off" autocorrect="off" spellcheck="false" />
+        <span class="excl">!</span>
+      </div>
+      <div class="feedback" id="fb"></div>
+      <div class="btn-row">
+        <button class="btn-check" id="btnCheck" onclick="checkAnswer()">Sprawdź</button>
+        <button class="btn-skip" onclick="skipCard()">Pomiń</button>
+      </div>
+    </div>`;
+
+  const inp = document.getElementById('ans');
+  inp.focus();
+  inp.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      if (!answered) checkAnswer();
+      else nextCard();
+    }
+  });
+}
+
+function checkAnswer() {
+  if (answered) return;
+  answered = true;
+  const c = cards[idx];
+  const inp = document.getElementById('ans');
+  const val = inp.value;
+  const fb  = document.getElementById('fb');
+  const btn = document.getElementById('btnCheck');
+
+  const ok = normalize(val) === normalize(c.answer);
+
+  if (ok) {
+    correct++;
+    inp.classList.add('correct');
+    fb.textContent = '✓ Brawo!';
+    fb.className = 'feedback correct';
+  } else {
+    wrong++;
+    inp.classList.add('wrong');
+    fb.innerHTML = `✗ Poprawna forma: <strong style="color:var(--correct)">¡${c.answer}!</strong>`;
+    fb.className = 'feedback wrong';
+  }
+
+  inp.disabled = true;
+  btn.style.display = 'none';
+
+  // inject Next button
+  document.querySelector('.btn-row').insertAdjacentHTML('afterbegin',
+    `<button class="btn-next" onclick="nextCard()">Dalej →</button>`);
+}
+
+function skipCard() {
+  if (answered) return;
+  wrong++;
+  answered = true;
+  const c = cards[idx];
+  const inp = document.getElementById('ans');
+  const fb  = document.getElementById('fb');
+  const btn = document.getElementById('btnCheck');
+
+  inp.value = '';
+  inp.disabled = true;
+  fb.innerHTML = `Forma: <strong style="color:var(--gold)">¡${c.answer}!</strong>`;
+  fb.className = 'feedback wrong';
+  btn.style.display = 'none';
+  document.querySelector('.btn-row').insertAdjacentHTML('afterbegin',
+    `<button class="btn-next" onclick="nextCard()">Dalej →</button>`);
+}
+
+function nextCard() {
+  idx++;
+  renderCard();
+}
+
+function renderScore() {
+  const total = cards.length;
+  const pct = Math.round(correct / total * 100);
+  let msg = pct === 100 ? '¡Perfecto! Wszystko idealnie!' :
+            pct >= 80  ? 'Świetnie! Prawie bezbłędnie.' :
+            pct >= 60  ? 'Dobrze, ale powtórz nieregularne.' :
+                         'Warto poćwiczyć jeszcze raz!';
+
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressText').textContent = total + ' / ' + total;
+
+  document.getElementById('quizArea').innerHTML = `
+    <div class="score-screen">
+      <div class="score-big">${pct}%</div>
+      <div class="score-label">Wynik końcowy</div>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-val good">${correct}</div>
+          <div class="stat-lbl">Poprawnie</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val bad">${wrong}</div>
+          <div class="stat-lbl">Błędy</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">${total}</div>
+          <div class="stat-lbl">Razem</div>
+        </div>
+      </div>
+      <div class="score-msg">${msg}</div>
+      <button class="btn-restart" onclick="startQuiz()">Jeszcze raz ↺</button>
+    </div>`;
+}
+
+// init
+startQuiz();
+</script>
+</body>
+</html>
