@@ -129,12 +129,27 @@
 <div class="section" id="tab-quiz">
 <div class="quiz-wrap">
 
-  <div class="mode-row">
-    <button class="mode-btn active" onclick="setMode('all', event)">Wszystkie</button>
-    <button class="mode-btn" onclick="setMode('tú', event)">Tú</button>
-    <button class="mode-btn" onclick="setMode('vosotros', event)">Vosotros</button>
-    <button class="mode-btn" onclick="setMode('usted', event)">Usted</button>
-    <button class="mode-btn" onclick="setMode('ustedes', event)">Ustedes</button>
+  <div class="filter-rows">
+    <div>
+      <div class="filter-row-label">Osoba</div>
+      <div class="mode-row" id="row-osoba">
+        <button class="mode-btn active" onclick="setMode('all', event)">Wszystkie</button>
+        <button class="mode-btn" onclick="setMode('tú', event)">Tú</button>
+        <button class="mode-btn" onclick="setMode('vosotros', event)">Vosotros</button>
+        <button class="mode-btn" onclick="setMode('usted', event)">Usted</button>
+        <button class="mode-btn" onclick="setMode('ustedes', event)">Ustedes</button>
+      </div>
+    </div>
+    <div>
+      <div class="filter-row-label">Typ</div>
+      <div class="mode-row" id="row-typ">
+        <button class="mode-btn active" onclick="setType('all', event)">Wszystkie</button>
+        <button class="mode-btn" onclick="setType('regularne', event)">Regularne</button>
+        <button class="mode-btn" onclick="setType('rdzen', event)">Z odmianą rdzenia</button>
+        <button class="mode-btn" onclick="setType('zwrotne', event)">Zwrotne</button>
+        <button class="mode-btn" onclick="setType('nieregularne', event)">Nieregularne</button>
+      </div>
+    </div>
   </div>
 
   <div class="progress-row">
@@ -186,9 +201,17 @@ const ALL_VERBS = [
   ["saber",     "Sabe",      "Sabed",     "Sepa",     "Sepan"],
 ];
 
+// Verb type categories
+const VERB_TYPE = {
+  hablar: 'regularne', comer: 'regularne', abrir: 'regularne',
+  pensar: 'rdzen', dormir: 'rdzen',
+  vestirse: 'zwrotne', sentarse: 'zwrotne', levantarse: 'zwrotne',
+};
+function getType(verb) { return VERB_TYPE[verb] || 'nieregularne'; }
+
 const PERSONS = ["Tú","Vosotros","Usted","Ustedes"];
 const COL = [1, 2, 3, 4];
-let mode = 'all', cards = [], idx = 0, correct = 0, wrong = 0, answered = false;
+let mode = 'all', typeFilter = 'all', cards = [], idx = 0, correct = 0, wrong = 0, answered = false;
 
 // Normalize user input for accent/mark-insensitive comparison
 function normalize(s) {
@@ -197,11 +220,12 @@ function normalize(s) {
 }
 
 // Build and shuffle quiz cards
-function buildCards(m) {
+function buildCards() {
   let list = [];
   ALL_VERBS.forEach(v => {
+    if (typeFilter !== 'all' && getType(v[0]) !== typeFilter) return;
     PERSONS.forEach((p, i) => {
-      if (m === 'all' || m === p.toLowerCase())
+      if (mode === 'all' || mode === p.toLowerCase())
         list.push({ verb: v[0], person: p, answer: v[COL[i]] });
     });
   });
@@ -214,20 +238,35 @@ function buildCards(m) {
 
 function setMode(m, e) {
   mode = m;
-  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#row-osoba .mode-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  startQuiz();
+}
+
+function setType(t, e) {
+  typeFilter = t;
+  document.querySelectorAll('#row-typ .mode-btn').forEach(b => b.classList.remove('active'));
   e.target.classList.add('active');
   startQuiz();
 }
 
 function startQuiz() {
-  cards = buildCards(mode);
+  cards = buildCards();
   idx = 0; correct = 0; wrong = 0;
+  if (cards.length === 0) { renderEmpty(); return; }
   renderCard();
 }
 
 function updateProgress() {
-  document.getElementById('progressFill').style.width = (idx / cards.length * 100) + '%';
+  const pct = cards.length > 0 ? idx / cards.length * 100 : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressText').textContent = idx + ' / ' + cards.length;
+}
+
+function renderEmpty() {
+  updateProgress();
+  document.getElementById('quizArea').innerHTML =
+    '<div class="empty-filters">Brak pytań dla wybranych filtrów.</div>';
 }
 
 // Render the current quiz card

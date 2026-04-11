@@ -617,6 +617,38 @@ h2 {
   flex-wrap: wrap;
 }
 
+.filter-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.filter-rows .mode-row {
+  margin-bottom: 0;
+}
+
+.filter-row-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 4px;
+}
+
+.empty-filters {
+  text-align: center;
+  padding: 48px 32px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px var(--shadow-soft);
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
 .mode-btn {
   font-family: 'DM Mono', monospace;
   font-size: 0.65rem;

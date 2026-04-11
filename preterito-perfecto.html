@@ -168,11 +168,29 @@
 <div class="section" id="tab-quiz">
 <div class="quiz-wrap">
 
-  <div class="mode-row">
-    <button class="mode-btn active" onclick="setQMode('all', event)">Wszystkie</button>
-    <button class="mode-btn" onclick="setQMode('participio', event)">Participio</button>
-    <button class="mode-btn" onclick="setQMode('conjugacion', event)">Odmiana</button>
-    <button class="mode-btn" onclick="setQMode('zdanie', event)">Zdania</button>
+  <div class="filter-rows">
+    <div class="mode-row" id="row-mode">
+      <button class="mode-btn active" onclick="setQMode('all', event)">Wszystkie</button>
+      <button class="mode-btn" onclick="setQMode('participio', event)">Participio</button>
+      <button class="mode-btn" onclick="setQMode('conjugacion', event)">Odmiana</button>
+      <button class="mode-btn" onclick="setQMode('zdanie', event)">Zdania</button>
+    </div>
+    <div id="filter-typ-wrap" style="display:none">
+      <div class="filter-row-label">Typ</div>
+      <div class="mode-row" id="row-typ">
+        <button class="mode-btn active" onclick="setTypFilter('all', event)">Wszystkie</button>
+        <button class="mode-btn" onclick="setTypFilter('regularne', event)">Regularne</button>
+        <button class="mode-btn" onclick="setTypFilter('nieregularne', event)">Nieregularne</button>
+      </div>
+    </div>
+    <div id="filter-liczba-wrap" style="display:none">
+      <div class="filter-row-label">Liczba</div>
+      <div class="mode-row" id="row-liczba">
+        <button class="mode-btn active" onclick="setLiczbaFilter('all', event)">Wszystkie</button>
+        <button class="mode-btn" onclick="setLiczbaFilter('pojedyncza', event)">Pojedyncza</button>
+        <button class="mode-btn" onclick="setLiczbaFilter('mnoga', event)">Mnoga</button>
+      </div>
+    </div>
   </div>
 
   <div class="progress-row">
@@ -231,7 +249,15 @@ const ZDANIA = [
   ["Esta mañana no (poder, yo) ___ ir en coche.", "he podido"],
 ];
 
-let qMode = 'all', cards = [], idx = 0, correct = 0, wrong = 0, answered = false;
+let qMode = 'all', typFilter = 'all', liczbaFilter = 'all', cards = [], idx = 0, correct = 0, wrong = 0, answered = false;
+
+// Irregular participios (not formed by regular -ar→-ado, -er/-ir→-ido)
+const PART_IRREG = new Set(['abrir','hacer','romper','ver','escribir','volver','poner','decir']);
+function getPartType(inf) { return PART_IRREG.has(inf) ? 'nieregularne' : 'regularne'; }
+
+// Singular pronouns (yo/tú/él-ella-usted), rest are plural
+const SINGULAR_PRONS = new Set(['yo','tú','él','ella','él/ella','usted']);
+function getLiczba(pron) { return SINGULAR_PRONS.has(pron) ? 'pojedyncza' : 'mnoga'; }
 
 // Normalize user input for accent/mark-insensitive comparison
 function norm(s) {
@@ -240,17 +266,21 @@ function norm(s) {
 }
 
 // Build and shuffle quiz cards
-function buildCards(m) {
+function buildCards() {
   let list = [];
-  if (m === 'all' || m === 'participio') {
-    PARTICIPIOS.forEach(([inf, part]) =>
-      list.push({ prompt: `Podaj participio od: <strong>${inf}</strong>`, answer: part, hint: 'participio' }));
+  if (qMode === 'all' || qMode === 'participio') {
+    PARTICIPIOS.forEach(([inf, part]) => {
+      if (qMode === 'participio' && typFilter !== 'all' && getPartType(inf) !== typFilter) return;
+      list.push({ prompt: `Podaj participio od: <strong>${inf}</strong>`, answer: part, hint: 'participio' });
+    });
   }
-  if (m === 'all' || m === 'conjugacion') {
-    CONJUGACIONES.forEach(([inf, pron, form]) =>
-      list.push({ prompt: `Odmień w pretérito perfecto:<br><strong>${inf}</strong> — ${pron}`, answer: form, hint: 'forma' }));
+  if (qMode === 'all' || qMode === 'conjugacion') {
+    CONJUGACIONES.forEach(([inf, pron, form]) => {
+      if (qMode === 'conjugacion' && liczbaFilter !== 'all' && getLiczba(pron) !== liczbaFilter) return;
+      list.push({ prompt: `Odmień w pretérito perfecto:<br><strong>${inf}</strong> — ${pron}`, answer: form, hint: 'forma' });
+    });
   }
-  if (m === 'all' || m === 'zdanie') {
+  if (qMode === 'all' || qMode === 'zdanie') {
     ZDANIA.forEach(([sent, ans]) =>
       list.push({ prompt: sent.replace('___', '<span style="color:var(--gold)">___</span>'), answer: ans, hint: 'uzupełnij formę' }));
   }
@@ -261,22 +291,54 @@ function buildCards(m) {
   return list;
 }
 
+function updateFilterRows() {
+  document.getElementById('filter-typ-wrap').style.display   = qMode === 'participio'  ? 'block' : 'none';
+  document.getElementById('filter-liczba-wrap').style.display = qMode === 'conjugacion' ? 'block' : 'none';
+}
+
 function setQMode(m, e) {
   qMode = m;
-  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  typFilter = 'all';
+  liczbaFilter = 'all';
+  document.querySelectorAll('#row-mode .mode-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('#row-typ .mode-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+  document.querySelectorAll('#row-liczba .mode-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+  updateFilterRows();
+  startQuiz();
+}
+
+function setTypFilter(t, e) {
+  typFilter = t;
+  document.querySelectorAll('#row-typ .mode-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  startQuiz();
+}
+
+function setLiczbaFilter(l, e) {
+  liczbaFilter = l;
+  document.querySelectorAll('#row-liczba .mode-btn').forEach(b => b.classList.remove('active'));
   e.target.classList.add('active');
   startQuiz();
 }
 
 function startQuiz() {
-  cards = buildCards(qMode);
+  cards = buildCards();
   idx = 0; correct = 0; wrong = 0;
+  if (cards.length === 0) { renderEmpty(); return; }
   renderCard();
 }
 
 function updateProgress() {
-  document.getElementById('progressFill').style.width = (idx / cards.length * 100) + '%';
+  const pct = cards.length > 0 ? idx / cards.length * 100 : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
   document.getElementById('progressText').textContent = idx + ' / ' + cards.length;
+}
+
+function renderEmpty() {
+  updateProgress();
+  document.getElementById('quizArea').innerHTML =
+    '<div class="empty-filters">Brak pytań dla wybranych filtrów.</div>';
 }
 
 // Render the current quiz card
