@@ -3,20 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>El Imperativo</title>
+<title>¡Quizpañol! · El Imperativo</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="hero">
-  <div class="hero-label">Español · Gramatyka</div>
-  <h1>El <em>Imperativo</em></h1>
-</div>
+<header class="global-header">
+  <div class="container header-inner">
+    <a class="brand-name" href="index.html">¡Quizpañol!</a>
+  </div>
+</header>
 
-<div class="tabs">
+<main class="lesson-main">
+<section class="lesson-hero">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="index.html">Strona główna</a>
+    <span>&gt;</span>
+    <span aria-current="page">El Imperativo</span>
+  </nav>
+  <h1>El Imperativo</h1>
+</section>
+
+<nav class="tabs" aria-label="Widoki lekcji">
   <button class="tab active" onclick="showTab('teoria', this)">📖 Teoria</button>
   <button class="tab" onclick="showTab('quiz', this)">✏️ Quiz</button>
-</div>
+</nav>
 
 <!-- Section: theory -->
 <div class="section active" id="tab-teoria">
@@ -129,6 +140,8 @@
 
 </div>
 </div>
+
+</main>
 
 <script>
 // Switch between theory and quiz tabs
