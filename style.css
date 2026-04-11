@@ -180,7 +180,7 @@ body::before {
   color: var(--muted);
   width: auto;
   margin-top: 10px;
-  margin-left: 2px;
+  margin-left: auto;
 }
 
 .crumb-slash {
