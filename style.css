@@ -162,8 +162,8 @@ body::before {
 
 .header-inner {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 10px;
   padding: 18px 0 16px;
 }
@@ -173,6 +173,7 @@ body::before {
   gap: 2px;
   flex-shrink: 0;
   align-items: center;
+  margin-left: auto;
 }
 
 .theme-btn {
@@ -234,7 +235,7 @@ body::before {
 .breadcrumb {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0;
   font-family: 'DM Serif Display', serif;
   font-size: clamp(2rem, 5vw, 3rem);
   line-height: 1.1;
@@ -248,7 +249,9 @@ body::before {
 .crumb-slash {
   display: inline-block;
   font-style: italic;
-  transform: skew(-10deg);
+  line-height: 0.9;
+  margin-right: 0.16em;
+  transform: translateY(-0.04em) skew(-10deg);
 }
 
 .breadcrumb a {
