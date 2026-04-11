@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>¡Quizpañol! · El Imperativo</title>
 <link rel="stylesheet" href="style.css">
+<script>
+  (function() {
+    var t = localStorage.getItem('quizpanol-theme');
+    if (t) document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
 </head>
 <body>
 
@@ -15,6 +21,11 @@
       <span class="crumb-slash" aria-hidden="true">/</span>
       <span aria-current="page">El Imperativo</span>
     </nav>
+    <div class="theme-switch" role="group" aria-label="Motyw">
+      <button class="theme-btn" data-theme-val="auto" onclick="setTheme('auto')" title="Automatyczny (systemowy)">Auto</button>
+      <button class="theme-btn" data-theme-val="light" onclick="setTheme('light')" title="Jasny">☀</button>
+      <button class="theme-btn" data-theme-val="dark" onclick="setTheme('dark')" title="Ciemny">☽</button>
+    </div>
   </div>
 </header>
 
@@ -352,5 +363,6 @@ function renderScore() {
 
 startQuiz();
 </script>
+<script src="theme.js"></script>
 </body>
 </html>
