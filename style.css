@@ -454,10 +454,11 @@ h2 {
 .conj-cell:nth-child(4n) { border-right: none; }
 
 .conj-cell .pronoun {
-  font-size: 0.7rem;
+  font-style: italic;
+  font-size: 0.9rem;
   color: var(--muted);
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 0;
 }
 
 .conj-cell .haber {
