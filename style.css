@@ -775,6 +775,7 @@ input[type="text"] {
 input[type="text"]:focus              { border-color: var(--gold-dim); }
 input[type="text"].correct            { border-color: var(--correct); color: var(--correct); background: var(--input-correct-bg); }
 input[type="text"].wrong              { border-color: var(--wrong);   color: var(--wrong);   background: var(--input-wrong-bg); animation: shake 0.3s ease; }
+input[type="text"].accent-missing     { border-color: var(--gold);    color: var(--gold);    background: var(--gold-bg); }
 
 @keyframes shake {
   0%,100% { transform: translateX(0); }
@@ -789,8 +790,9 @@ input[type="text"].wrong              { border-color: var(--wrong);   color: var
   font-style: italic;
 }
 
-.feedback.correct { color: var(--correct); }
-.feedback.wrong   { color: var(--wrong); }
+.feedback.correct        { color: var(--correct); }
+.feedback.wrong          { color: var(--wrong); }
+.feedback.accent-missing { color: var(--gold); }
 
 .btn-row {
   display: flex;
@@ -863,8 +865,9 @@ button {
   line-height: 1;
 }
 
-.stat-val.good { color: var(--correct); }
-.stat-val.bad  { color: var(--wrong); }
+.stat-val.good   { color: var(--correct); }
+.stat-val.bad    { color: var(--wrong); }
+.stat-val.accent { color: var(--gold); }
 
 .stat-lbl {
   font-family: 'DM Mono', monospace;

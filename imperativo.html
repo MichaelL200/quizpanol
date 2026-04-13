@@ -211,12 +211,17 @@ function getType(verb) { return VERB_TYPE[verb] || 'nieregularne'; }
 
 const PERSONS = ["Tú","Vosotros","Usted","Ustedes"];
 const COL = [1, 2, 3, 4];
-let mode = 'all', typeFilter = 'all', cards = [], idx = 0, correct = 0, wrong = 0, answered = false;
+let mode = 'all', typeFilter = 'all', cards = [], idx = 0, correct = 0, wrong = 0, accent = 0, answered = false;
 
 // Normalize user input for accent/mark-insensitive comparison
 function normalize(s) {
   return s.trim().replace(/[¡!]/g,'').toLowerCase()
          .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+}
+
+// Normalize only case and punctuation, keep accents
+function normalizeSoft(s) {
+  return s.trim().replace(/[¡!]/g,'').toLowerCase();
 }
 
 // Build and shuffle quiz cards
@@ -252,7 +257,7 @@ function setType(t, e) {
 
 function startQuiz() {
   cards = buildCards();
-  idx = 0; correct = 0; wrong = 0;
+  idx = 0; correct = 0; wrong = 0; accent = 0;
   if (cards.length === 0) { renderEmpty(); return; }
   renderCard();
 }
@@ -307,10 +312,17 @@ function checkAnswer() {
   const inp = document.getElementById('ans');
   const fb  = document.getElementById('fb');
   document.getElementById('btnCheck').style.display = 'none';
-  const ok = normalize(inp.value) === normalize(c.answer);
-  if (ok) {
+  const exactOk = normalizeSoft(inp.value) === normalizeSoft(c.answer);
+  const accentOk = normalize(inp.value) === normalize(c.answer);
+  if (exactOk) {
     correct++; inp.classList.add('correct');
     fb.textContent = '✓ Brawo!'; fb.className = 'feedback correct';
+  } else if (accentOk) {
+    // Content correct but missing/wrong accents
+    accent++;
+    inp.classList.add('accent-missing');
+    fb.innerHTML = `~ Treść poprawna, ale brakuje akcentów: <strong style="color:var(--correct)">¡${c.answer}!</strong>`;
+    fb.className = 'feedback accent-missing';
   } else {
     wrong++; inp.classList.add('wrong');
     fb.innerHTML = `✗ Poprawna forma: <strong style="color:var(--correct)">¡${c.answer}!</strong>`;
@@ -340,11 +352,14 @@ function nextCard() { idx++; renderCard(); }
 // Final results screen
 function renderScore() {
   const total = cards.length;
-  const pct = Math.round(correct / total * 100);
+  const pct = Math.round((correct + accent * 0.5) / total * 100);
   const msg = pct === 100 ? '¡Perfecto! Wszystko idealnie!' :
               pct >= 80  ? 'Świetnie! Prawie bezbłędnie.' :
               pct >= 60  ? 'Dobrze, ale powtórz nieregularne.' :
                            'Warto poćwiczyć jeszcze raz!';
+  const accentStat = accent > 0
+    ? `<div class="stat"><div class="stat-val accent">${accent}</div><div class="stat-lbl">Bez akcentów</div></div>`
+    : '';
   document.getElementById('progressFill').style.width = '100%';
   document.getElementById('progressText').textContent = total + ' / ' + total;
   document.getElementById('quizArea').innerHTML = `
@@ -353,6 +368,7 @@ function renderScore() {
       <div class="score-label">Wynik końcowy</div>
       <div class="stats">
         <div class="stat"><div class="stat-val good">${correct}</div><div class="stat-lbl">Poprawnie</div></div>
+        ${accentStat}
         <div class="stat"><div class="stat-val bad">${wrong}</div><div class="stat-lbl">Błędy</div></div>
         <div class="stat"><div class="stat-val">${total}</div><div class="stat-lbl">Razem</div></div>
       </div>
