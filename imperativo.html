@@ -365,7 +365,7 @@ function renderScore() {
   const pct = Math.round((correct + accent * 0.5) / total * 100);
   const msg = pct === 100 ? '¡Perfecto! Wszystko idealnie!' :
               pct >= 80  ? 'Świetnie! Prawie bezbłędnie.' :
-              pct >= 60  ? 'Dobrze, ale powtórz nieregularne.' :
+              pct >= 60  ? 'Dobrze, ale warto jeszcze poćwiczyć!' :
                            'Warto poćwiczyć jeszcze raz!';
   const accentStat = accent > 0
     ? `<div class="stat"><div class="stat-val accent">${accent}</div><div class="stat-lbl">Bez akcentów</div></div>`
