@@ -299,10 +299,20 @@ function renderCard() {
     </div>`;
   const inp = document.getElementById('ans');
   inp.focus();
-  inp.addEventListener('keydown', e => {
-    if (e.key === 'Enter') { if (!answered) checkAnswer(); else nextCard(); }
-  });
 }
+
+window.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const inp = document.getElementById('ans');
+    if (inp) {
+      if (!answered) checkAnswer();
+      else nextCard();
+    } else {
+      const btnRestart = document.querySelector('.btn-restart');
+      if (btnRestart) startQuiz();
+    }
+  }
+});
 
 // Check answer and prepare next step
 function checkAnswer() {
