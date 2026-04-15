@@ -135,10 +135,7 @@
     <div class="irreg-item"><div class="irreg-inf">poner</div><div class="irreg-part">puesto</div></div>
     <div class="irreg-item"><div class="irreg-inf">decir</div><div class="irreg-part">dicho</div></div>
     <div class="irreg-item"><div class="irreg-inf">abrir</div><div class="irreg-part">abierto</div></div>
-    <div class="irreg-item"><div class="irreg-inf">ir</div><div class="irreg-part">ido</div></div>
-    <div class="irreg-item"><div class="irreg-inf">tener</div><div class="irreg-part">tenido</div></div>
-    <div class="irreg-item"><div class="irreg-inf">salir</div><div class="irreg-part">salido</div></div>
-    <div class="irreg-item"><div class="irreg-inf">venir</div><div class="irreg-part">venido</div></div>
+    <div class="irreg-item"><div class="irreg-inf">morir</div><div class="irreg-part">muerto</div></div>
   </div>
 
   <div class="t-label mt-lg">Użycie</div>
@@ -235,6 +232,7 @@ const PARTICIPIOS = [
   ["salir","salido"],["venir","venido"],["trabajar","trabajado"],
   ["pensar","pensado"],["dormir","dormido"],["vestirse","vestido"],
   ["sentarse","sentado"],["levantarse","levantado"],["cenar","cenado"],
+  ["morir","muerto"],
 ];
 
 const CONJUGACIONES = [
@@ -277,7 +275,7 @@ const PRONOMS = {
 const PEOPLE = ["yo", "tú", "él/ella/usted", "nosotros", "vosotros", "ellos/ellas/ustedes"];
 
 // Irregular participios (not formed by regular -ar→-ado, -er/-ir→-ido)
-const PART_IRREG = new Set(['abrir','hacer','romper','ver','escribir','volver','poner','decir']);
+const PART_IRREG = new Set(['abrir','hacer','romper','ver','escribir','volver','poner','decir','morir']);
 function getPartType(inf) { 
   const base = inf.replace('se', '');
   return PART_IRREG.has(base) ? 'nieregularne' : 'regularne'; 
