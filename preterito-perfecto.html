@@ -214,15 +214,8 @@
 
 </main>
 
+<script src="quiz.js"></script>
 <script>
-// Switch between theory and quiz tabs
-function showTab(id, btn) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  btn.classList.add('active');
-}
-
 // Question pools grouped by quiz mode
 const PARTICIPIOS = [
   ["hablar","hablado"],["comer","comido"],["abrir","abierto"],
@@ -262,7 +255,7 @@ const ZDANIA = [
   ["Ellos (despertarse) ___ muy tarde hoy.", "se han despertado"],
 ];
 
-let qMode = 'all', typFilter = 'all', osobaFilter = 'all', cards = [], idx = 0, correct = 0, wrong = 0, accent = 0, answered = false, mistakes = [];
+let qMode = 'all', typFilter = 'all', osobaFilter = 'all';
 
 const HABER = {
   "yo": "he", "tú": "has", "él/ella/usted": "ha",
@@ -281,17 +274,6 @@ function getPartType(inf) {
   return PART_IRREG.has(base) ? 'nieregularne' : 'regularne'; 
 }
 
-// Normalize user input for accent/mark-insensitive comparison
-function norm(s) {
-  return s.trim().replace(/[¡!¿?]/g,'').toLowerCase()
-         .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-}
-
-// Normalize only case and punctuation, keep accents
-function normSoft(s) {
-  return s.trim().replace(/[¡!¿?]/g,'').toLowerCase();
-}
-
 function getFullForm(inf, part, person) {
   const isReflexive = inf.endsWith('se');
   const haber = HABER[person];
@@ -304,38 +286,34 @@ function getFullForm(inf, part, person) {
 
 // Build and shuffle quiz cards
 function buildCards() {
-  let list = [];
-  
+  const list = [];
+
   // Participio Mode
   if (qMode === 'all' || qMode === 'participio') {
     PARTICIPIOS.forEach(([inf, part]) => {
       if (qMode === 'participio' && typFilter !== 'all' && getPartType(inf) !== typFilter) return;
-      list.push({ prompt: `Podaj participio od: <strong>${inf}</strong>`, answer: part, hint: 'participio' });
+      list.push({ prompt: `Podaj participio od: <strong>${inf}</strong>`, answer: part, hint: 'Pretérito perfecto · participio' });
     });
   }
-  
+
   // Conjugacion Mode (Odmiana)
   if (qMode === 'all' || qMode === 'conjugacion') {
     PARTICIPIOS.forEach(([inf, part]) => {
       PEOPLE.forEach(p => {
         if (osobaFilter !== 'all' && osobaFilter !== p) return;
         const form = getFullForm(inf, part, p);
-        list.push({ prompt: `Odmień w pretérito perfecto:<br><strong>${inf}</strong> — ${p}`, answer: form, hint: 'forma' });
+        list.push({ prompt: `Odmień w pretérito perfecto:<br><strong>${inf}</strong> — ${p}`, answer: form, hint: 'Pretérito perfecto · forma' });
       });
     });
   }
-  
+
   // Zdania Mode (Sentences)
   if (qMode === 'all' || qMode === 'zdanie') {
     ZDANIA.forEach(([sent, ans]) =>
-      list.push({ prompt: sent.replace('___', '<span style="color:var(--gold)">___</span>'), answer: ans, hint: 'uzupełnij formę' }));
+      list.push({ prompt: sent.replace('___', '<span style="color:var(--gold)">___</span>'), answer: ans, hint: 'Pretérito perfecto · uzupełnij formę' }));
   }
-  
-  for (let i = list.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [list[i], list[j]] = [list[j], list[i]];
-  }
-  return list;
+
+  return shuffleArray(list);
 }
 
 function updateFilterRows() {
@@ -369,157 +347,17 @@ function setOsobaFilter(o, e) {
   startQuiz();
 }
 
-function startQuiz() {
-  cards = buildCards();
-  idx = 0; correct = 0; wrong = 0; accent = 0; mistakes = [];
-  if (cards.length === 0) { renderEmpty(); return; }
-  renderCard();
-}
-
-function updateProgress() {
-  const pct = cards.length > 0 ? idx / cards.length * 100 : 0;
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressText').textContent = idx + ' / ' + cards.length;
-}
-
-function renderEmpty() {
-  updateProgress();
-  document.getElementById('quizArea').innerHTML =
-    '<div class="empty-filters">Brak pytań dla wybranych filtrów.</div>';
-}
-
-// Render the current quiz card
-function renderCard() {
-  updateProgress();
-  const area = document.getElementById('quizArea');
-  if (idx >= cards.length) { renderScore(); return; }
-  answered = false;
-  const c = cards[idx];
-  area.innerHTML = `
-    <div class="card">
-      <div class="card-number">${idx + 1} z ${cards.length}</div>
-      <div class="prompt">${c.prompt}</div>
-      <div class="hint">Pretérito perfecto · ${c.hint}</div>
-      <div class="input-row">
-        <input type="text" id="ans" placeholder="wpisz odpowiedź…" autocomplete="off" autocorrect="off" spellcheck="false" />
-      </div>
-      <div class="feedback" id="fb"></div>
-      <div class="btn-row">
-        <button class="btn-check" id="btnCheck" onclick="checkAnswer()">Sprawdź</button>
-        <button class="btn-skip" onclick="skipCard()">Pomiń</button>
-      </div>
-    </div>`;
-  const inp = document.getElementById('ans');
-  inp.focus();
-}
-
-window.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    const inp = document.getElementById('ans');
-    if (inp) {
-      if (!answered) checkAnswer();
-      else nextCard();
-    } else {
-      const btnRestart = document.querySelector('.btn-restart');
-      if (btnRestart) startQuiz();
-    }
+initQuizEngine({
+  buildCards,
+  punctuationChars: '[¡!¿?]',
+  skipLabel: 'Odpowiedź',
+  scoreMessages: {
+    perfect: '¡Perfecto! Niesamowite!',
+    great: 'Świetnie! Prawie bezbłędnie.',
+    ok: 'Dobrze, ale warto jeszcze poćwiczyć!',
+    bad: 'Jeszcze raz! Ćwiczenie czyni mistrza.'
   }
 });
-
-// Check answer and prepare next step
-function checkAnswer() {
-  if (answered) return;
-  answered = true;
-  const c = cards[idx];
-  const inp = document.getElementById('ans');
-  const fb  = document.getElementById('fb');
-  document.getElementById('btnCheck').style.display = 'none';
-  const exactOk = normSoft(inp.value) === normSoft(c.answer);
-  const accentOk = norm(inp.value) === norm(c.answer);
-  if (exactOk) {
-    correct++; inp.classList.add('correct');
-    fb.textContent = '✓ Brawo!'; fb.className = 'feedback correct';
-  } else if (accentOk) {
-    // Content correct but missing/wrong accents
-    accent++;
-    inp.classList.add('accent-missing');
-    fb.innerHTML = `~ Treść poprawna, ale brakuje akcentów: <strong style="color:var(--correct)">${c.answer}</strong>`;
-    fb.className = 'feedback accent-missing';
-    mistakes.push({ prompt: c.prompt, user: inp.value, correct: c.answer, type: 'accent' });
-  } else {
-    wrong++; inp.classList.add('wrong');
-    fb.innerHTML = `✗ Poprawna forma: <strong style="color:var(--correct)">${c.answer}</strong>`;
-    fb.className = 'feedback wrong';
-    mistakes.push({ prompt: c.prompt, user: inp.value || '(brak)', correct: c.answer, type: 'wrong' });
-  }
-  inp.disabled = true;
-  document.querySelector('.btn-row').insertAdjacentHTML('afterbegin',
-    `<button class="btn-next" onclick="nextCard()">Dalej →</button>`);
-}
-
-function skipCard() {
-  if (answered) return;
-  answered = true; wrong++;
-  const c = cards[idx];
-  const inp = document.getElementById('ans');
-  inp.disabled = true;
-  const fb = document.getElementById('fb');
-  fb.innerHTML = `Odpowiedź: <strong style="color:var(--gold)">${c.answer}</strong>`;
-  fb.className = 'feedback wrong';
-  mistakes.push({ prompt: c.prompt, user: '(pominięto)', correct: c.answer, type: 'wrong' });
-  document.getElementById('btnCheck').style.display = 'none';
-  document.querySelector('.btn-row').insertAdjacentHTML('afterbegin',
-    `<button class="btn-next" onclick="nextCard()">Dalej →</button>`);
-}
-
-function nextCard() { idx++; renderCard(); }
-
-// Final results screen
-function renderScore() {
-  const total = cards.length;
-  const pct = Math.round((correct + accent * 0.5) / total * 100);
-  const msg = pct === 100 ? '¡Perfecto! Niesamowite!' :
-              pct >= 80  ? 'Świetnie! Prawie bezbłędnie.' :
-              pct >= 60  ? 'Dobrze, ale warto jeszcze poćwiczyć!' :
-                           'Jeszcze raz! Ćwiczenie czyni mistrza.';
-  const accentStat = accent > 0
-    ? `<div class="stat"><div class="stat-val accent">${accent}</div><div class="stat-lbl">Bez akcentów</div></div>`
-    : '';
-
-  let mistakesHtml = '';
-  if (mistakes.length > 0) {
-    mistakesHtml = `
-      <div class="mistakes-list">
-        <div class="mistakes-title">Twoje potknięcia:</div>
-        ${mistakes.map(m => `
-          <div class="mistake-item">
-            <div class="mistake-prompt">${m.prompt}</div>
-            <div class="mistake-details">
-              <span class="mistake-val user">${m.user}</span>
-              <span class="mistake-val ${m.type}">${m.correct}</span>
-            </div>
-          </div>
-        `).join('')}
-      </div>`;
-  }
-
-  document.getElementById('progressFill').style.width = '100%';
-  document.getElementById('progressText').textContent = total + ' / ' + total;
-  document.getElementById('quizArea').innerHTML = `
-    <div class="score-screen">
-      <div class="score-big">${pct}%</div>
-      <div class="score-label">Wynik końcowy</div>
-      <div class="stats">
-        <div class="stat"><div class="stat-val good">${correct}</div><div class="stat-lbl">Poprawnie</div></div>
-        ${accentStat}
-        <div class="stat"><div class="stat-val bad">${wrong}</div><div class="stat-lbl">Błędy</div></div>
-        <div class="stat"><div class="stat-val">${total}</div><div class="stat-lbl">Razem</div></div>
-      </div>
-      <div class="score-msg">${msg}</div>
-      <button class="btn-restart" onclick="startQuiz()">Jeszcze raz ↺</button>
-      ${mistakesHtml}
-    </div>`;
-}
 
 startQuiz();
 </script>
