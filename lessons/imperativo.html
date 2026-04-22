@@ -58,11 +58,12 @@
       <tr><td>comer</td><td>Come</td><td>Comed</td><td>Coma</td><td>Coman</td></tr>
       <tr><td>abrir</td><td>Abre</td><td>Abrid</td><td>Abra</td><td>Abran</td></tr>
 
-      <tr class="section-row"><td colspan="5">Z odmianą rdzenia (e→ie, o→ue)</td></tr>
+      <tr class="section-row"><td colspan="5">Z odmianą rdzenia (e→ie, o→ue, e→i)</td></tr>
       <tr><td>pensar</td><td>Piensa</td><td>Pensad</td><td>Piense</td><td>Piensen</td></tr>
       <tr><td>dormir</td><td>Duerme</td><td>Dormid</td><td>Duerma</td><td>Duerman</td></tr>
       <tr><td>volver</td><td>Vuelve</td><td>Volved</td><td>Vuelva</td><td>Vuelvan</td></tr>
       <tr><td>morir</td><td>Muere</td><td>Morid</td><td>Muera</td><td>Mueran</td></tr>
+      <tr><td>servir</td><td>Sirve</td><td>Servid</td><td>Sirva</td><td>Sirvan</td></tr>
 
       <tr class="section-row"><td colspan="5">Zwrotne</td></tr>
       <tr><td>vestirse</td><td>Vístete</td><td>Vestíos</td><td>Vístase</td><td>Vístanse</td></tr>
@@ -178,6 +179,7 @@ const ALL_VERBS = [
   ["dormir",    "Duerme",    "Dormid",    "Duerma",   "Duerman"],
   ["volver",    "Vuelve",    "Volved",    "Vuelva",   "Vuelvan"],
   ["morir",     "Muere",     "Morid",     "Muera",    "Mueran"],
+  ["servir",    "Sirve",     "Servid",    "Sirva",    "Sirvan"],
   ["vestirse",  "Vístete",   "Vestíos",   "Vístase",  "Vístanse"],
   ["sentarse",  "Siéntate",  "Sentaos",   "Siéntese", "Siéntense"],
   ["levantarse","Levántate", "Levantaos", "Levántese","Levántense"],
@@ -203,7 +205,7 @@ const ALL_VERBS = [
 // Verb type categories
 const VERB_TYPE = {
   hablar: 'regularne', comer: 'regularne', abrir: 'regularne',
-  pensar: 'rdzen', dormir: 'rdzen', volver: 'rdzen', morir: 'rdzen',
+  pensar: 'rdzen', dormir: 'rdzen', volver: 'rdzen', morir: 'rdzen', servir: 'rdzen',
   vestirse: 'zwrotne', sentarse: 'zwrotne', levantarse: 'zwrotne',
 };
 function getType(verb) { return VERB_TYPE[verb] || 'nieregularne'; }
