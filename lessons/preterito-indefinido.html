@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Quizpañol! · Pretérito Indefinido</title>
+<link rel="stylesheet" href="../shared/style.css">
+<script>
+  (function() {
+    var t = localStorage.getItem('quizpanol-theme');
+    if (t) document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+</head>
+<body>
+
+<header class="global-header">
+  <div class="container header-inner">
+    <a class="brand-name" href="../index.html">¡Quizpañol!</a>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <span class="crumb-slash" aria-hidden="true">/</span>
+      <span aria-current="page">Pretérito Indefinido</span>
+    </nav>
+    <div class="theme-switch" role="group" aria-label="Motyw">
+      <button class="theme-btn" data-theme-val="auto" onclick="setTheme('auto')" title="Automatyczny (systemowy)">Auto</button>
+      <button class="theme-btn" data-theme-val="light" onclick="setTheme('light')" title="Jasny">☀</button>
+      <button class="theme-btn" data-theme-val="dark" onclick="setTheme('dark')" title="Ciemny">☽</button>
+    </div>
+  </div>
+</header>
+
+<main class="lesson-main">
+<nav class="tabs" aria-label="Widoki lekcji">
+  <button class="tab active" onclick="showTab('teoria', this)">📖 Teoria</button>
+  <button class="tab" onclick="showTab('quiz', this)">✏️ Quiz</button>
+</nav>
+
+<!-- Section: theory -->
+<div class="section active" id="tab-teoria">
+<div class="teoria-wrap">
+
+  <div class="t-label">Budowa czasu</div>
+  <h2>Verbos regulares</h2>
+
+  <div class="conj-grid" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="conj-head">Osoba</div>
+    <div class="conj-head">-AR (viajar)</div>
+    <div class="conj-head">-ER (aprender)</div>
+    <div class="conj-head">-IR (vivir)</div>
+
+    <div class="conj-cell"><span class="pronoun">yo</span></div>
+    <div class="conj-cell"><span class="haber">viaj<strong>é</strong></span></div>
+    <div class="conj-cell"><span class="haber">aprend<strong>í</strong></span></div>
+    <div class="conj-cell"><span class="haber">viv<strong>í</strong></span></div>
+
+    <div class="conj-cell"><span class="pronoun">tú</span></div>
+    <div class="conj-cell"><span class="haber">viaj<strong>aste</strong></span></div>
+    <div class="conj-cell"><span class="haber">aprend<strong>iste</strong></span></div>
+    <div class="conj-cell"><span class="haber">viv<strong>iste</strong></span></div>
+
+    <div class="conj-cell"><span class="pronoun">él/ella/usted</span></div>
+    <div class="conj-cell"><span class="haber">viaj<strong>ó</strong></span></div>
+    <div class="conj-cell"><span class="haber">aprend<strong>ió</strong></span></div>
+    <div class="conj-cell"><span class="haber">viv<strong>ió</strong></span></div>
+
+    <div class="conj-cell"><span class="pronoun">nosotros/as</span></div>
+    <div class="conj-cell"><span class="haber">viaj<strong>amos</strong></span></div>
+    <div class="conj-cell"><span class="haber">aprend<strong>imos</strong></span></div>
+    <div class="conj-cell"><span class="haber">viv<strong>imos</strong></span></div>
+
+    <div class="conj-cell"><span class="pronoun">vosotros/as</span></div>
+    <div class="conj-cell"><span class="haber">viaj<strong>asteis</strong></span></div>
+    <div class="conj-cell"><span class="haber">aprend<strong>isteis</strong></span></div>
+    <div class="conj-cell"><span class="haber">viv<strong>isteis</strong></span></div>
+
+    <div class="conj-cell"><span class="pronoun">ellos/ellas/ustedes</span></div>
+    <div class="conj-cell"><span class="haber">viaj<strong>aron</strong></span></div>
+    <div class="conj-cell"><span class="haber">aprend<strong>ieron</strong></span></div>
+    <div class="conj-cell"><span class="haber">viv<strong>ieron</strong></span></div>
+  </div>
+
+  <div class="note">
+    <strong>Uwaga!</strong> Verby <em>-er</em> i <em>-ir</em> mają te same końcówki. &nbsp;·&nbsp;
+    Forma <em>nosotros</em> dla <em>-ar</em> i <em>-ir</em> jest taka sama jak w czasie presente: <em>viajamos, vivimos</em>.
+  </div>
+
+  <div class="t-label mt-lg">Wyjątki ortograficzne</div>
+  <h2>Zmiany w pisowni (yo)</h2>
+
+  <div class="part-grid">
+    <div class="part-card">
+      <div class="ending">-car</div>
+      <div class="rule-arrow">c → qu (yo)</div>
+      <div class="example">buscar → <em>busqué</em><br>tocar → <em>toqué</em></div>
+    </div>
+    <div class="part-card">
+      <div class="ending">-gar</div>
+      <div class="rule-arrow">g → gu (yo)</div>
+      <div class="example">llegar → <em>llegué</em><br>jugar → <em>jugué</em></div>
+    </div>
+    <div class="part-card">
+      <div class="ending">-zar</div>
+      <div class="rule-arrow">z → c (yo)</div>
+      <div class="example">empezar → <em>empecé</em><br>comenzar → <em>comencé</em></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Verby caer, leer, creer, oír, construir</strong> — w 3. os. l.p. i l.m. <em>i</em> przechodzi w <em>y</em>:<br>
+    <em>leer → leyó, leyeron &nbsp;·&nbsp; caer → cayó, cayeron &nbsp;·&nbsp; oír → oyó, oyeron</em>
+  </div>
+
+  <div class="t-label mt-lg">Nieregularne z odmianą rdzenia</div>
+  <h2>Alternacje samogłoskowe (-IR)</h2>
+
+  <div class="part-grid">
+    <div class="part-card">
+      <div class="ending">e → i</div>
+      <div class="rule-arrow">3. os. l.p. i l.m.</div>
+      <div class="example">pedir → <em>pidió, pidieron</em><br>sentir → <em>sintió, sintieron</em><br>repetir, seguir, elegir, reír…</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">o → u</div>
+      <div class="rule-arrow">3. os. l.p. i l.m.</div>
+      <div class="example">dormir → <em>durmió, durmieron</em><br>morir → <em>murió, murieron</em></div>
+    </div>
+  </div>
+
+  <div class="t-label mt-lg">Nieregularne z nowym rdzeniem</div>
+  <h2>Verby z rdzeniem nieregularnym</h2>
+
+  <div class="note" style="margin-bottom:16px">
+    Końcówki: <strong>-e, -iste, -o, -imos, -isteis, -ieron</strong> (bez akcentów!) &nbsp;·&nbsp; wyjątek: <em>decir → dijeron, traer → trajeron</em>
+  </div>
+
+  <table class="main-table">
+    <thead>
+      <tr>
+        <th>Bezokolicznik</th>
+        <th>Rdzeń</th>
+        <th>yo</th>
+        <th>él/ella</th>
+        <th>ellos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="section-row"><td colspan="5">Grupa -uv-</td></tr>
+      <tr><td>estar</td><td>estuv-</td><td>estuve</td><td>estuvo</td><td>estuvieron</td></tr>
+      <tr><td>tener</td><td>tuv-</td><td>tuve</td><td>tuvo</td><td>tuvieron</td></tr>
+      <tr><td>andar</td><td>anduv-</td><td>anduve</td><td>anduvo</td><td>anduvieron</td></tr>
+      <tr class="section-row"><td colspan="5">Grupa -us- / -ud- / -up-</td></tr>
+      <tr><td>poner</td><td>pus-</td><td>puse</td><td>puso</td><td>pusieron</td></tr>
+      <tr><td>poder</td><td>pud-</td><td>pude</td><td>pudo</td><td>pudieron</td></tr>
+      <tr><td>saber</td><td>sup-</td><td>supe</td><td>supo</td><td>supieron</td></tr>
+      <tr><td>caber</td><td>cup-</td><td>cupe</td><td>cupo</td><td>cupieron</td></tr>
+      <tr><td>haber</td><td>hub-</td><td>hube</td><td>hubo</td><td>hubieron</td></tr>
+      <tr class="section-row"><td colspan="5">Pozostałe</td></tr>
+      <tr><td>venir</td><td>vin-</td><td>vine</td><td>vino</td><td>vinieron</td></tr>
+      <tr><td>querer</td><td>quis-</td><td>quise</td><td>quiso</td><td>quisieron</td></tr>
+      <tr><td>hacer</td><td>hic-</td><td>hice</td><td>hizo</td><td>hicieron</td></tr>
+      <tr class="section-row"><td colspan="5">Grupa -j- (→ -eron, nie -ieron)</td></tr>
+      <tr class="irreg"><td>decir</td><td>dij-</td><td>dije</td><td>dijo</td><td>dijeron</td></tr>
+      <tr class="irreg"><td>traer</td><td>traj-</td><td>traje</td><td>trajo</td><td>trajeron</td></tr>
+      <tr class="irreg"><td>conducir</td><td>conduj-</td><td>conduje</td><td>condujo</td><td>condujeron</td></tr>
+      <tr class="irreg"><td>traducir</td><td>traduj-</td><td>traduje</td><td>tradujo</td><td>tradujeron</td></tr>
+    </tbody>
+  </table>
+
+  <div class="t-label mt-lg">Całkowicie nieregularne ★</div>
+  <h2>Ser / Ir · Dar · Ver</h2>
+
+  <div class="conj-grid" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="conj-head">Osoba</div>
+    <div class="conj-head">ser / ir</div>
+    <div class="conj-head">dar</div>
+    <div class="conj-head">ver</div>
+
+    <div class="conj-cell"><span class="pronoun">yo</span></div>
+    <div class="conj-cell"><span class="haber">fui</span></div>
+    <div class="conj-cell"><span class="haber">di</span></div>
+    <div class="conj-cell"><span class="haber">vi</span></div>
+
+    <div class="conj-cell"><span class="pronoun">tú</span></div>
+    <div class="conj-cell"><span class="haber">fuiste</span></div>
+    <div class="conj-cell"><span class="haber">diste</span></div>
+    <div class="conj-cell"><span class="haber">viste</span></div>
+
+    <div class="conj-cell"><span class="pronoun">él/ella/usted</span></div>
+    <div class="conj-cell"><span class="haber">fue</span></div>
+    <div class="conj-cell"><span class="haber">dio</span></div>
+    <div class="conj-cell"><span class="haber">vio</span></div>
+
+    <div class="conj-cell"><span class="pronoun">nosotros/as</span></div>
+    <div class="conj-cell"><span class="haber">fuimos</span></div>
+    <div class="conj-cell"><span class="haber">dimos</span></div>
+    <div class="conj-cell"><span class="haber">vimos</span></div>
+
+    <div class="conj-cell"><span class="pronoun">vosotros/as</span></div>
+    <div class="conj-cell"><span class="haber">fuisteis</span></div>
+    <div class="conj-cell"><span class="haber">disteis</span></div>
+    <div class="conj-cell"><span class="haber">visteis</span></div>
+
+    <div class="conj-cell"><span class="pronoun">ellos/ellas/ustedes</span></div>
+    <div class="conj-cell"><span class="haber">fueron</span></div>
+    <div class="conj-cell"><span class="haber">dieron</span></div>
+    <div class="conj-cell"><span class="haber">vieron</span></div>
+  </div>
+
+  <div class="note">
+    <strong>Ser i Ir</strong> mają identyczną formę! Kontekst podpowiada, o który czasownik chodzi:<br>
+    <em>El 9 de junio <strong>fue</strong> (ser) mi cumpleaños.</em> &nbsp;·&nbsp; <em>Felipe <strong>fue</strong> (ir) a Granada la semana pasada.</em>
+  </div>
+
+  <div class="t-label mt-lg">Użycie</div>
+  <h2>Kiedy używamy pretérito indefinido?</h2>
+
+  <div class="func-list">
+    <div class="func-item">
+      <span class="func-num">1</span>
+      <span class="func-name">Czynności zakończone w przeszłości</span>
+      <span class="func-ex">bez związku z teraźniejszością</span>
+    </div>
+    <div class="func-item">
+      <span class="func-num">2</span>
+      <span class="func-name">Konkretny, zamknięty okres czasu</span>
+      <span class="func-ex">El verano pasado viajé a España.</span>
+    </div>
+    <div class="func-item">
+      <span class="func-num">3</span>
+      <span class="func-name">Sekwencja wydarzeń</span>
+      <span class="func-ex">Llegué, comí y me acosté.</span>
+    </div>
+  </div>
+
+  <div class="t-label mt-lg">Markery czasu</div>
+  <h2>Marcadores temporales</h2>
+
+  <div class="irreg-grid">
+    <div class="irreg-item"><div class="irreg-inf">wczoraj</div><div class="irreg-part">ayer</div></div>
+    <div class="irreg-item"><div class="irreg-inf">wczoraj wieczorem</div><div class="irreg-part">anoche</div></div>
+    <div class="irreg-item"><div class="irreg-inf">przedwczoraj</div><div class="irreg-part">anteayer</div></div>
+    <div class="irreg-item"><div class="irreg-inf">pewnego dnia</div><div class="irreg-part">el otro día</div></div>
+    <div class="irreg-item"><div class="irreg-inf">w zeszłym tygodniu</div><div class="irreg-part">la semana pasada</div></div>
+    <div class="irreg-item"><div class="irreg-inf">w zeszłym miesiącu</div><div class="irreg-part">el mes pasado</div></div>
+    <div class="irreg-item"><div class="irreg-inf">w zeszłym roku</div><div class="irreg-part">el año pasado</div></div>
+    <div class="irreg-item"><div class="irreg-inf">[czas] temu</div><div class="irreg-part">hace [tiempo] <span class="ex-dim">(hace un año)</span></div></div>
+    <div class="irreg-item"><div class="irreg-inf">w [roku]</div><div class="irreg-part">en [año] <span class="ex-dim">(en 1998)</span></div></div>
+  </div>
+
+</div>
+</div>
+
+<!-- Section: quiz -->
+<div class="section" id="tab-quiz">
+<div class="quiz-wrap">
+
+  <div class="filter-rows">
+    <div>
+      <div class="filter-row-label">Tryb</div>
+      <div class="mode-row" id="row-mode">
+        <button class="mode-btn active" onclick="setQMode('all', event)">Wszystkie</button>
+        <button class="mode-btn" onclick="setQMode('regularne', event)">Regularne</button>
+        <button class="mode-btn" onclick="setQMode('nieregularne', event)">Nieregularne</button>
+        <button class="mode-btn" onclick="setQMode('zdanie', event)">Zdania</button>
+      </div>
+    </div>
+    <div id="filter-osoba-wrap" style="display:none">
+      <div class="filter-row-label">Osoba</div>
+      <div class="mode-row" id="row-osoba">
+        <button class="mode-btn active" onclick="setOsobaFilter('all', event)">Wszystkie</button>
+        <button class="mode-btn" onclick="setOsobaFilter('yo', event)">yo</button>
+        <button class="mode-btn" onclick="setOsobaFilter('tú', event)">tú</button>
+        <button class="mode-btn" onclick="setOsobaFilter('él/ella/usted', event)">él/ella/ud.</button>
+        <button class="mode-btn" onclick="setOsobaFilter('nosotros', event)">nosotros</button>
+        <button class="mode-btn" onclick="setOsobaFilter('vosotros', event)">vosotros</button>
+        <button class="mode-btn" onclick="setOsobaFilter('ellos/ellas/ustedes', event)">ellos/uds.</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-row">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">0 / 0</div>
+  </div>
+
+  <div id="quizArea"></div>
+
+</div>
+</div>
+
+</main>
+
+<script src="../shared/quiz.js"></script>
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+
+// Regular verbs: [infinitive, yo, tú, él, nosotros, vosotros, ellos]
+const REGULAR_VERBS = [
+  ["hablar",   "hablé",    "hablaste",   "habló",    "hablamos",   "hablasteis",   "hablaron"],
+  ["viajar",   "viajé",    "viajaste",   "viajó",    "viajamos",   "viajasteis",   "viajaron"],
+  ["trabajar", "trabajé",  "trabajaste", "trabajó",  "trabajamos", "trabajasteis", "trabajaron"],
+  ["comprar",  "compré",   "compraste",  "compró",   "compramos",  "comprasteis",  "compraron"],
+  ["llegar",   "llegué",   "llegaste",   "llegó",    "llegamos",   "llegasteis",   "llegaron"],
+  ["empezar",  "empecé",   "empezaste",  "empezó",   "empezamos",  "empezasteis",  "empezaron"],
+  ["buscar",   "busqué",   "buscaste",   "buscó",    "buscamos",   "buscasteis",   "buscaron"],
+  ["comer",    "comí",     "comiste",    "comió",    "comimos",    "comisteis",    "comieron"],
+  ["beber",    "bebí",     "bebiste",    "bebió",    "bebimos",    "bebisteis",    "bebieron"],
+  ["aprender", "aprendí",  "aprendiste", "aprendió", "aprendimos", "aprendisteis", "aprendieron"],
+  ["vivir",    "viví",     "viviste",    "vivió",    "vivimos",    "vivisteis",    "vivieron"],
+  ["salir",    "salí",     "saliste",    "salió",    "salimos",    "salisteis",    "salieron"],
+  ["escribir", "escribí",  "escribiste", "escribió", "escribimos", "escribisteis", "escribieron"],
+  ["abrir",    "abrí",     "abriste",    "abrió",    "abrimos",    "abristeis",    "abrieron"],
+];
+
+// Irregular verbs: [infinitive, yo, tú, él, nosotros, vosotros, ellos]
+const IRREG_VERBS = [
+  ["ser/ir",    "fui",      "fuiste",    "fue",      "fuimos",     "fuisteis",    "fueron"],
+  ["dar",       "di",       "diste",     "dio",      "dimos",      "disteis",     "dieron"],
+  ["ver",       "vi",       "viste",     "vio",      "vimos",      "visteis",     "vieron"],
+  ["estar",     "estuve",   "estuviste", "estuvo",   "estuvimos",  "estuvisteis", "estuvieron"],
+  ["tener",     "tuve",     "tuviste",   "tuvo",     "tuvimos",    "tuvisteis",   "tuvieron"],
+  ["andar",     "anduve",   "anduviste", "anduvo",   "anduvimos",  "anduvisteis", "anduvieron"],
+  ["poner",     "puse",     "pusiste",   "puso",     "pusimos",    "pusisteis",   "pusieron"],
+  ["poder",     "pude",     "pudiste",   "pudo",     "pudimos",    "pudisteis",   "pudieron"],
+  ["saber",     "supe",     "supiste",   "supo",     "supimos",    "supisteis",   "supieron"],
+  ["venir",     "vine",     "viniste",   "vino",     "vinimos",    "vinisteis",   "vinieron"],
+  ["querer",    "quise",    "quisiste",  "quiso",    "quisimos",   "quisisteis",  "quisieron"],
+  ["hacer",     "hice",     "hiciste",   "hizo",     "hicimos",    "hicisteis",   "hicieron"],
+  ["decir",     "dije",     "dijiste",   "dijo",     "dijimos",    "dijisteis",   "dijeron"],
+  ["traer",     "traje",    "trajiste",  "trajo",    "trajimos",   "trajisteis",  "trajeron"],
+  ["conducir",  "conduje",  "condujiste","condujo",  "condujimos", "condujisteis","condujeron"],
+];
+
+// Sentences to complete
+const ZDANIA = [
+  ["Ayer mis padres ___ (ir) a la ópera.", "fueron"],
+  ["El año pasado nosotros no ___ (poder) ir de vacaciones.", "pudimos"],
+  ["En 1998, Ana ___ (tener) su primer hijo.", "tuvo"],
+  ["¿Dónde ___ (poner, tú) el diccionario?", "pusiste"],
+  ["El domingo ___ (andar, yo) diez horas.", "anduve"],
+  ["Mi boda ___ (ser) hace tres años.", "fue"],
+  ["Es mentira. Julián no ___ (decir) eso.", "dijo"],
+  ["Mis abuelos ___ (llegar) ayer de vacaciones.", "llegaron"],
+  ["___ (Ir, nosotros) a León en coche.", "Fuimos"],
+  ["¿Por qué no ___ (traer, tú) la ropa?", "trajiste"],
+  ["La policía ___ (detener) al ladrón.", "detuvo"],
+  ["El jueves pasado nosotros ___ (estar) en la oficina.", "estuvimos"],
+  ["Pablo Picasso ___ (nacer) en Málaga.", "nació"],
+  ["Hace un rato ___ (llamar, yo) a tu casa.", "llamé"],
+  ["¿Cuándo ___ (hablar, vosotros) con Pedro?", "hablasteis"],
+  ["Anoche ___ (esperar, nosotros) a Lucas dos horas.", "esperamos"],
+  ["Laura y Pedro ___ (volver) a Madrid el año pasado.", "volvieron"],
+  ["Paco ___ (vender) su barco hace una semana.", "vendió"],
+];
+
+const PEOPLE    = ["yo", "tú", "él/ella/usted", "nosotros", "vosotros", "ellos/ellas/ustedes"];
+const COL_IDX   = [1, 2, 3, 4, 5, 6];
+
+let qMode = 'all', osobaFilter = 'all';
+
+// ─── BUILD CARDS ─────────────────────────────────────────────────────────────
+
+function buildCards() {
+  const list = [];
+
+  // Regular conjugation
+  if (qMode === 'all' || qMode === 'regularne') {
+    REGULAR_VERBS.forEach(v => {
+      PEOPLE.forEach((p, i) => {
+        if (osobaFilter !== 'all' && osobaFilter !== p) return;
+        list.push({
+          prompt: `Odmień w pretérito indefinido:<br><strong>${v[0]}</strong> — ${p}`,
+          answer: v[COL_IDX[i]],
+          hint: 'Pretérito indefinido · regular'
+        });
+      });
+    });
+  }
+
+  // Irregular conjugation
+  if (qMode === 'all' || qMode === 'nieregularne') {
+    IRREG_VERBS.forEach(v => {
+      PEOPLE.forEach((p, i) => {
+        if (osobaFilter !== 'all' && osobaFilter !== p) return;
+        list.push({
+          prompt: `Odmień w pretérito indefinido:<br><strong>${v[0]}</strong> — ${p}`,
+          answer: v[COL_IDX[i]],
+          hint: 'Pretérito indefinido · nieregularny'
+        });
+      });
+    });
+  }
+
+  // Sentences
+  if (qMode === 'all' || qMode === 'zdanie') {
+    ZDANIA.forEach(([sent, ans]) =>
+      list.push({
+        prompt: sent.replace('___', '<span style="color:var(--gold)">___</span>'),
+        answer: ans,
+        hint: 'Pretérito indefinido · uzupełnij formę'
+      })
+    );
+  }
+
+  return shuffleArray(list);
+}
+
+function updateFilterRows() {
+  const showOsoba = (qMode === 'regularne' || qMode === 'nieregularne' || qMode === 'all');
+  document.getElementById('filter-osoba-wrap').style.display = showOsoba ? 'block' : 'none';
+}
+
+function setQMode(m, e) {
+  qMode = m;
+  osobaFilter = 'all';
+  document.querySelectorAll('#row-mode .mode-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('#row-osoba .mode-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+  updateFilterRows();
+  startQuiz();
+}
+
+function setOsobaFilter(o, e) {
+  osobaFilter = o;
+  document.querySelectorAll('#row-osoba .mode-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  startQuiz();
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+
+initQuizEngine({
+  buildCards,
+  punctuationChars: '[¡!¿?]',
+  skipLabel: 'Odpowiedź',
+  scoreMessages: {
+    perfect: '¡Perfecto! Niesamowite!',
+    great: 'Świetnie! Prawie bezbłędnie.',
+    ok: 'Dobrze, ale warto jeszcze poćwiczyć!',
+    bad: 'Jeszcze raz! Ćwiczenie czyni mistrza.'
+  }
+});
+
+startQuiz();
+</script>
+<script src="../shared/theme.js"></script>
+</body>
+</html>

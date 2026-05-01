@@ -93,6 +93,14 @@
   --noise-opacity:           0.4;
 }
 
+.ex-dim {
+  display: block;
+  font-size: 0.85em;
+  opacity: 0.7;
+  font-style: italic;
+  margin-top: 2px;
+}
+
 /* 2) Reset and base */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
