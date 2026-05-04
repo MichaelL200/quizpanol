@@ -351,6 +351,19 @@ h2 {
   font-size: 0.95rem;
 }
 
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+
+.table-scroll .main-table {
+  margin-bottom: 0;
+  border: none;
+  min-width: 600px;
+}
+
 .main-table thead tr { background: var(--table-head-bg); }
 
 .main-table thead th {
@@ -496,9 +509,19 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   border: 1px solid var(--border);
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin-bottom: 20px;
   font-size: 0.9rem;
+}
+
+.conj-grid > * {
+  min-width: 100px;
+}
+
+.conj-grid .conj-head:first-child,
+.conj-grid .conj-cell:nth-child(4n+1) {
+  min-width: 80px;
 }
 
 .conj-head {
