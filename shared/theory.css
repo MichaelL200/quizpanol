@@ -1,0 +1,315 @@
+/* Theory section */
+.teoria-wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 0 64px;
+}
+
+.t-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.main-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+}
+
+.table-scroll .main-table {
+  margin-bottom: 0;
+  border: none;
+  min-width: 600px;
+}
+
+.main-table thead tr { background: var(--table-head-bg); }
+
+.main-table thead th {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 12px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.main-table thead th:first-child { text-align: left; }
+
+.main-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.main-table tbody tr:last-child { border-bottom: none; }
+.main-table tbody tr:hover       { background: var(--table-row-hover); }
+.main-table tbody tr.irreg       { background: var(--orange-bg); }
+.main-table tbody tr.irreg:hover { background: var(--irreg-row-hover); }
+
+.main-table tbody tr.section-row td {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  padding: 7px 16px;
+  background: var(--card-dark);
+  border-top: 1px solid var(--border);
+}
+
+.main-table td               { padding: 9px 16px; vertical-align: middle; }
+.main-table td:first-child   { font-style: italic; color: var(--muted); font-size: 0.9rem; }
+.main-table td:not(:first-child) {
+  text-align: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.05rem;
+  color: var(--gold);
+}
+
+.badge {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.55rem;
+  background: var(--orange);
+  color: var(--bg);
+  border-radius: 2px;
+  padding: 1px 5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  margin-left: 4px;
+  font-style: normal;
+}
+
+.note {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold-dim);
+  padding: 13px 18px;
+  font-size: 0.87rem;
+  color: var(--muted);
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+.note strong { color: var(--text); }
+.note em     { color: var(--gold); font-style: italic; }
+
+.info-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.info-box strong {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.info-box em {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1rem;
+  color: var(--text);
+  font-style: italic;
+}
+
+.func-list {
+  background: var(--card);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.func-item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.func-item:last-child { border-bottom: none; }
+
+.func-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--gold-dim);
+  min-width: 16px;
+}
+
+.func-name {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  min-width: 150px;
+}
+
+.func-ex {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.87rem;
+}
+
+.conj-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.conj-grid > * {
+  min-width: 100px;
+}
+
+.conj-grid .conj-head:first-child,
+.conj-grid .conj-cell:nth-child(4n+1) {
+  min-width: 80px;
+}
+
+.conj-head {
+  background: var(--table-head-bg);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 10px 12px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.conj-head:last-child { border-right: none; }
+
+.conj-cell {
+  padding: 9px 12px;
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  text-align: center;
+  background: var(--card);
+}
+
+.conj-cell:nth-child(4n) { border-right: none; }
+
+.conj-cell .pronoun {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 0;
+}
+
+.conj-cell .haber {
+  font-family: 'DM Mono', monospace;
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+.conj-cell .participle {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1rem;
+  color: var(--text);
+  font-style: italic;
+}
+
+.part-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.part-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+  text-align: center;
+}
+
+.part-card .ending {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.part-card .rule-arrow {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+
+.part-card .example {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 6px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.irreg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.irreg-item {
+  background: var(--orange-bg);
+  border: 1px solid var(--irreg-border);
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.irreg-inf {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+
+.irreg-part {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  color: var(--text);
+}
