@@ -195,7 +195,7 @@ input[type="text"].accent-missing     { border-color: var(--gold);    color: var
   margin-top: 28px;
 }
 
-button {
+.quiz-wrap button {
   font-family: 'DM Mono', monospace;
   font-size: 0.75rem;
   letter-spacing: 0.1em;

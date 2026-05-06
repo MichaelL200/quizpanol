@@ -1,5 +1,5 @@
 /* Theory section */
-.teoria-wrap {
+.theory-wrap {
   max-width: 920px;
   margin: 0 auto;
   padding: 0 0 64px;
@@ -14,7 +14,7 @@
   margin-bottom: 8px;
 }
 
-h2 {
+.theory-wrap h2 {
   font-family: 'DM Serif Display', serif;
   font-size: 1.5rem;
   color: var(--gold);

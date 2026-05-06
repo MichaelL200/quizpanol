@@ -121,3 +121,7 @@ body::before {
   z-index: 0;
   opacity: var(--noise-opacity);
 }
+
+/* Utility helpers */
+.mt-lg { margin-top: 32px; }
+.mb-sm { margin-bottom: 12px; }
