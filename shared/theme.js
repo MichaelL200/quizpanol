@@ -13,6 +13,7 @@ function setTheme(t) {
 
 function renderHeader() {
   var el = document.querySelector('header.global-header');
+  if (!el) return;
   var homeHref = el.dataset.homeHref || 'index.html';
   var breadcrumb = el.dataset.breadcrumb || '';
   var brandHtml;
