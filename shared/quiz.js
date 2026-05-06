@@ -1,8 +1,10 @@
 // Shared quiz engine for all lessons
 
+// --- State ---
 let cards = [], idx = 0, correct = 0, wrong = 0, accent = 0, answered = false, mistakes = [];
 let _cfg = {};
 
+// --- Rendering ---
 // Shuffle an array in place (Fisher-Yates) and return it
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -83,6 +85,7 @@ window.addEventListener('keydown', e => {
   }
 });
 
+// --- Answer checking ---
 // Check answer and prepare next step
 function checkAnswer() {
   if (answered) return;
@@ -133,6 +136,7 @@ function skipCard() {
 
 function nextCard() { idx++; renderCard(); }
 
+// --- Score screen ---
 // Final results screen
 function renderScore() {
   const total = cards.length;
@@ -183,6 +187,7 @@ function renderScore() {
     </div>`;
 }
 
+// --- Engine init ---
 // Initialize the quiz engine with lesson-specific configuration
 function initQuizEngine(config) {
   _cfg = config;
