@@ -44,7 +44,7 @@
   font-style: italic;
 }
 
-.mode-btn {
+.quiz-wrap .mode-btn {
   font-family: 'DM Mono', monospace;
   font-size: 0.65rem;
   letter-spacing: 0.1em;
@@ -58,13 +58,13 @@
   transition: all 0.15s;
 }
 
-.mode-btn.active {
+.quiz-wrap .mode-btn.active {
   border-color: var(--gold-dim);
   color: var(--gold);
   background: var(--gold-bg);
 }
 
-.mode-btn:hover:not(.active) { border-color: var(--muted); color: var(--text); }
+.quiz-wrap .mode-btn:hover:not(.active) { border-color: var(--muted); color: var(--text); }
 
 .progress-row {
   display: flex;
@@ -209,8 +209,8 @@ input[type="text"].accent-missing     { border-color: var(--gold);    color: var
 
 .btn-check  { background: var(--gold); color: var(--bg); flex: 1; }
 .btn-check:hover  { background: var(--btn-primary-hover); }
-.btn-skip   { background: transparent; border: 1px solid var(--border); color: var(--muted); }
-.btn-skip:hover   { border-color: var(--muted); color: var(--text); }
+.quiz-wrap .btn-skip   { background: transparent; border: 1px solid var(--border); color: var(--muted); }
+.quiz-wrap .btn-skip:hover   { border-color: var(--muted); color: var(--text); }
 .btn-next   { background: var(--gold); color: var(--bg); flex: 1; }
 .btn-next:hover   { background: var(--btn-primary-hover); }
 .btn-restart { background: var(--gold); color: var(--bg); padding: 12px 32px; font-size: 0.78rem; }

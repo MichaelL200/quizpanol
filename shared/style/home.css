@@ -42,6 +42,9 @@
 }
 
 .lesson-card h2 {
+  font-family: 'DM Serif Display', serif;
+  color: var(--gold);
+  font-weight: 400;
   margin-bottom: 10px;
   font-size: 1.45rem;
   line-height: 1.2;
