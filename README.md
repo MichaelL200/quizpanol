@@ -9,6 +9,7 @@ Prosta aplikacja webowa do nauki gramatyki języka hiszpańskiego. Powstała z m
 ### 📚 Dostępne lekcje
 1. **Imperativo** – tryb rozkazujący i jego formy.
 2. **Pretérito Perfecto** – budowa czasu przeszłego i participio.
+3. **Pretérito Indefinido** – budowa i użycie czasu przeszłego dokonanego.
 
 ### 🛠️ Technologie
 - **Frontend:** HTML5, CSS3, JavaScript
