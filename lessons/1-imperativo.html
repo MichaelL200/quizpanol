@@ -5,29 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>¡Quizpañol! · Imperativo</title>
 <link rel="stylesheet" href="../shared/style/style.css">
-<script>
-  (function() {
-    var t = localStorage.getItem('quizpanol-theme');
-    if (t) document.documentElement.setAttribute('data-theme', t);
-  })();
-</script>
+<script src="../shared/theme-early.js"></script>
 </head>
 <body>
 
-<header class="global-header">
-  <div class="container header-inner">
-    <a class="brand-name" href="../index.html">¡Quizpañol!</a>
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <span class="crumb-slash" aria-hidden="true">/</span>
-      <span aria-current="page">Imperativo</span>
-    </nav>
-    <div class="theme-switch" role="group" aria-label="Motyw">
-      <button class="theme-btn" data-theme-val="light" onclick="setTheme('light')" title="Jasny">☀</button>
-      <button class="theme-btn" data-theme-val="auto" onclick="setTheme('auto')" title="Automatyczny (systemowy)">Auto</button>
-      <button class="theme-btn" data-theme-val="dark" onclick="setTheme('dark')" title="Ciemny">☽</button>
-    </div>
-  </div>
-</header>
+<header class="global-header"></header>
+<script src="../shared/theme.js"></script>
+<script>renderHeader({breadcrumb: 'Imperativo', homeHref: '../index.html'});</script>
 
 <main class="lesson-main">
 <nav class="tabs" aria-label="Widoki lekcji">
@@ -171,8 +155,7 @@
 
 </main>
 
-<script src="../shared/quiz.js"></script>
-<script>
+<script src="../shared/quiz.js"></script><script>
 // Data format: [infinitive, tu, vosotros, usted, ustedes]
 const ALL_VERBS = [
   ["hablar",    "Habla",     "Hablad",    "Hable",    "Hablen"],
@@ -265,6 +248,5 @@ initQuizEngine({
 
 startQuiz();
 </script>
-<script src="../shared/theme.js"></script>
 </body>
 </html>
