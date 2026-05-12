@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Quizpañol! · Futuro Imperfecto</title>
+<link rel="stylesheet" href="../shared/styles/main.css">
+<script src="../shared/theme-init.js"></script>
+</head>
+<body>
+
+<header class="global-header" data-home-href="../index.html" data-breadcrumb="Futuro Imperfecto"></header>
+<script src="../shared/header.js"></script>
+
+<main class="lesson-main">
+<nav class="tabs" aria-label="Widoki lekcji">
+  <button class="tab active" onclick="showTab('theory', this)">📖 Teoria</button>
+  <button class="tab" onclick="showTab('quiz', this)">✏️ Quiz</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════ TEORIA -->
+<div class="section active" id="tab-theory">
+<div class="theory-wrap">
+
+  <div class="t-label">Budowa czasu</div>
+  <h2>Verbos regulares</h2>
+
+  <div class="conj-grid" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="conj-head">Osoba</div>
+    <div class="conj-head">-AR (quedar)</div>
+    <div class="conj-head">-ER (ver)</div>
+    <div class="conj-head">-IR (vivir)</div>
+
+    <div class="conj-cell"><span class="pronoun">yo</span></div>
+    <div class="conj-cell"><span class="haber">quedar<strong>é</strong></span></div>
+    <div class="conj-cell"><span class="haber">ver<strong>é</strong></span></div>
+    <div class="conj-cell"><span class="haber">vivir<strong>é</strong></span></div>
+
+    <div class="conj-cell"><span class="pronoun">tú</span></div>
+    <div class="conj-cell"><span class="haber">quedar<strong>ás</strong></span></div>
+    <div class="conj-cell"><span class="haber">ver<strong>ás</strong></span></div>
+    <div class="conj-cell"><span class="haber">vivir<strong>ás</strong></span></div>
+
+    <div class="conj-cell"><span class="pronoun">él/ella/usted</span></div>
+    <div class="conj-cell"><span class="haber">quedar<strong>á</strong></span></div>
+    <div class="conj-cell"><span class="haber">ver<strong>á</strong></span></div>
+    <div class="conj-cell"><span class="haber">vivir<strong>á</strong></span></div>
+
+    <div class="conj-cell"><span class="pronoun">nosotros/as</span></div>
+    <div class="conj-cell"><span class="haber">quedar<strong>emos</strong></span></div>
+    <div class="conj-cell"><span class="haber">ver<strong>emos</strong></span></div>
+    <div class="conj-cell"><span class="haber">vivir<strong>emos</strong></span></div>
+
+    <div class="conj-cell"><span class="pronoun">vosotros/as</span></div>
+    <div class="conj-cell"><span class="haber">quedar<strong>éis</strong></span></div>
+    <div class="conj-cell"><span class="haber">ver<strong>éis</strong></span></div>
+    <div class="conj-cell"><span class="haber">vivir<strong>éis</strong></span></div>
+
+    <div class="conj-cell"><span class="pronoun">ellos/ellas/ustedes</span></div>
+    <div class="conj-cell"><span class="haber">quedar<strong>án</strong></span></div>
+    <div class="conj-cell"><span class="haber">ver<strong>án</strong></span></div>
+    <div class="conj-cell"><span class="haber">vivir<strong>án</strong></span></div>
+  </div>
+
+  <div class="note">
+    <strong>Klucz!</strong> Końcówki są <em>takie same</em> dla wszystkich trzech koniugacji (-ar, -er, -ir)
+    i dodajemy je do <em>bezokolicznika</em> (nie do rdzenia). &nbsp;·&nbsp;
+    Wszystkie formy mają akcent: <em>-é, -ás, -á, -éis, -án</em> (oprócz <em>-emos</em>).
+  </div>
+
+  <!-- ─── NIEREGULARNE – 3 grupy ─── -->
+  <div class="t-label mt-lg">Tylko 12 nieregularnych ★</div>
+  <h2>Verbos irregulares — trzy grupy</h2>
+
+  <div class="note" style="margin-bottom:16px">
+    Nieregularność dotyczy wyłącznie <strong>rdzenia</strong> — końcówki są zawsze takie same jak u regularnych.
+  </div>
+
+  <!-- Grupa 1: tracą -e- -->
+  <h3 style="margin:0 0 8px; font-size:1rem; color:var(--accent)">Grupa 1 · tracą samogłoskę <em>-e-</em></h3>
+  <div class="part-grid">
+    <div class="part-card">
+      <div class="ending">caber</div>
+      <div class="rule-arrow">→ cabr-</div>
+      <div class="example">cabr<strong>é</strong>, cabr<strong>ás</strong>…</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">poder</div>
+      <div class="rule-arrow">→ podr-</div>
+      <div class="example">podr<strong>é</strong>, podr<strong>ás</strong>…</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">saber</div>
+      <div class="rule-arrow">→ sabr-</div>
+      <div class="example">sabr<strong>é</strong>, sabr<strong>ás</strong>…</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">querer</div>
+      <div class="rule-arrow">→ querr-</div>
+      <div class="example">querr<strong>é</strong>, querr<strong>ás</strong>…</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">haber</div>
+      <div class="rule-arrow">→ habr-</div>
+      <div class="example">habr<strong>é</strong>, habr<strong>ás</strong>…</div>
+    </div>
+  </div>
+
+  <!-- Grupa 2: -e-/-i- → -d- -->
+  <h3 style="margin:16px 0 8px; font-size:1rem; color:var(--accent)">Grupa 2 · samogłoska zastąpiona przez <em>-d-</em></h3>
+  <div class="part-grid">
+    <div class="part-card">
+      <div class="ending">tener</div>
+      <div class="rule-arrow">→ tendr-</div>
+      <div class="example">tendr<strong>é</strong>, tendr<strong>ás</strong>…</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">venir</div>
+      <div class="rule-arrow">→ vendr-</div>
+      <div class="example">vendr<strong>é</strong>, vendr<strong>ás</strong>…</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">salir</div>
+      <div class="rule-arrow">→ saldr-</div>
+      <div class="example">saldr<strong>é</strong>, saldr<strong>ás</strong>…</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">valer</div>
+      <div class="rule-arrow">→ valdr-</div>
+      <div class="example">valdr<strong>é</strong>, valdr<strong>ás</strong>…</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">poner</div>
+      <div class="rule-arrow">→ pondr-</div>
+      <div class="example">pondr<strong>é</strong>, pondr<strong>ás</strong>…</div>
+    </div>
+  </div>
+
+  <!-- Grupa 3: inne -->
+  <h3 style="margin:16px 0 8px; font-size:1rem; color:var(--accent)">Grupa 3 · zupełnie inny rdzeń</h3>
+  <div class="part-grid">
+    <div class="part-card">
+      <div class="ending">decir</div>
+      <div class="rule-arrow">→ dir-</div>
+      <div class="example">dir<strong>é</strong>, dir<strong>ás</strong>…</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">hacer</div>
+      <div class="rule-arrow">→ har-</div>
+      <div class="example">har<strong>é</strong>, har<strong>ás</strong>…</div>
+    </div>
+  </div>
+
+  <!-- Pełna tabela nieregularnych -->
+  <div class="t-label mt-lg">Pełna odmiana</div>
+  <h2>Tabla de irregulares</h2>
+
+  <div class="table-scroll">
+  <table class="main-table">
+    <thead>
+      <tr>
+        <th>Bezokolicznik</th>
+        <th>Rdzeń</th>
+        <th>yo</th>
+        <th>tú</th>
+        <th>él/ella</th>
+        <th>nosotros/as</th>
+        <th>vosotros/as</th>
+        <th>ellos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="section-row"><td colspan="8">Tracą samogłoskę -e-</td></tr>
+      <tr><td>caber</td><td>cabr-</td><td>cabré</td><td>cabrás</td><td>cabrá</td><td>cabremos</td><td>cabréis</td><td>cabrán</td></tr>
+      <tr><td>poder</td><td>podr-</td><td>podré</td><td>podrás</td><td>podrá</td><td>podremos</td><td>podréis</td><td>podrán</td></tr>
+      <tr><td>saber</td><td>sabr-</td><td>sabré</td><td>sabrás</td><td>sabrá</td><td>sabremos</td><td>sabréis</td><td>sabrán</td></tr>
+      <tr><td>querer</td><td>querr-</td><td>querré</td><td>querrás</td><td>querrá</td><td>querremos</td><td>querréis</td><td>querrán</td></tr>
+      <tr><td>haber</td><td>habr-</td><td>habré</td><td>habrás</td><td>habrá</td><td>habremos</td><td>habréis</td><td>habrán</td></tr>
+      <tr class="section-row"><td colspan="8">Samogłoska → -d-</td></tr>
+      <tr><td>tener</td><td>tendr-</td><td>tendré</td><td>tendrás</td><td>tendrá</td><td>tendremos</td><td>tendréis</td><td>tendrán</td></tr>
+      <tr><td>venir</td><td>vendr-</td><td>vendré</td><td>vendrás</td><td>vendrá</td><td>vendremos</td><td>vendréis</td><td>vendrán</td></tr>
+      <tr><td>salir</td><td>saldr-</td><td>saldré</td><td>saldrás</td><td>saldrá</td><td>saldremos</td><td>saldréis</td><td>saldrán</td></tr>
+      <tr><td>valer</td><td>valdr-</td><td>valdré</td><td>valdrás</td><td>valdrá</td><td>valdremos</td><td>valdréis</td><td>valdrán</td></tr>
+      <tr><td>poner</td><td>pondr-</td><td>pondré</td><td>pondrás</td><td>pondrá</td><td>pondremos</td><td>pondréis</td><td>pondrán</td></tr>
+      <tr class="section-row"><td colspan="8">Zupełnie inny rdzeń</td></tr>
+      <tr class="irreg"><td>decir</td><td>dir-</td><td>diré</td><td>dirás</td><td>dirá</td><td>diremos</td><td>diréis</td><td>dirán</td></tr>
+      <tr class="irreg"><td>hacer</td><td>har-</td><td>haré</td><td>harás</td><td>hará</td><td>haremos</td><td>haréis</td><td>harán</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- Użycie -->
+  <div class="t-label mt-lg">Użycie</div>
+  <h2>Kiedy używamy futuro imperfecto?</h2>
+
+  <div class="func-list">
+    <div class="func-item">
+      <span class="func-num">1</span>
+      <span class="func-name">Czynności i fakty w przyszłości</span>
+      <span class="func-ex">El año que viene <em>viviré</em> en España.</span>
+    </div>
+    <div class="func-item">
+      <span class="func-num">2</span>
+      <span class="func-name">Hipoteza / przypuszczenie o teraźniejszości</span>
+      <span class="func-ex">No sé dónde <em>estará</em> Marta. (= pewnie jest…)</span>
+    </div>
+    <div class="func-item">
+      <span class="func-num">3</span>
+      <span class="func-name">Warunek: Si + presente → futuro</span>
+      <span class="func-ex">Si reciclamos, <em>salvaremos</em> el planeta.</span>
+    </div>
+    <div class="func-item">
+      <span class="func-num">4</span>
+      <span class="func-name">Conjeturas: Creo/Imagino/Supongo que…</span>
+      <span class="func-ex">Supongo que <em>vendrá</em> mañana.</span>
+    </div>
+    <div class="func-item">
+      <span class="func-num">5</span>
+      <span class="func-name">Obietnice: Te prometo / Te juro que…</span>
+      <span class="func-ex">Te prometo que <em>estudiaré</em> más.</span>
+    </div>
+  </div>
+
+  <!-- Inne sposoby wyrażania przyszłości -->
+  <div class="t-label mt-lg">Alternatywy</div>
+  <h2>Inne sposoby wyrażania przyszłości</h2>
+
+  <div class="part-grid">
+    <div class="part-card">
+      <div class="ending">ir a + inf.</div>
+      <div class="rule-arrow">bliska przyszłość</div>
+      <div class="example"><em>Voy a comprar</em> verduras orgánicas.</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">Presente</div>
+      <div class="rule-arrow">plan / zamiar</div>
+      <div class="example"><em>Mañana compro</em> bombillas de bajo consumo.</div>
+    </div>
+    <div class="part-card">
+      <div class="ending">Querer/Pensar + inf.</div>
+      <div class="rule-arrow">zamiar / plan</div>
+      <div class="example"><em>Pienso cambiar</em> mis hábitos de consumo.</div>
+    </div>
+  </div>
+
+  <!-- Markery czasu -->
+  <div class="t-label mt-lg">Markery czasu</div>
+  <h2>Marcadores temporales de futuro</h2>
+
+  <div class="irreg-grid">
+    <div class="irreg-item"><div class="irreg-inf">jutro</div><div class="irreg-part">mañana</div></div>
+    <div class="irreg-item"><div class="irreg-inf">pojutrze</div><div class="irreg-part">pasado mañana</div></div>
+    <div class="irreg-item"><div class="irreg-inf">dziś wieczorem</div><div class="irreg-part">esta noche</div></div>
+    <div class="irreg-item"><div class="irreg-inf">w tym tygodniu</div><div class="irreg-part">esta semana</div></div>
+    <div class="irreg-item"><div class="irreg-inf">w przyszłym tygodniu</div><div class="irreg-part">la semana que viene</div></div>
+    <div class="irreg-item"><div class="irreg-inf">w przyszłym miesiącu</div><div class="irreg-part">el mes que viene</div></div>
+    <div class="irreg-item"><div class="irreg-inf">w przyszłym roku</div><div class="irreg-part">el año que viene</div></div>
+    <div class="irreg-item"><div class="irreg-inf">od jutra</div><div class="irreg-part">a partir de mañana</div></div>
+    <div class="irreg-item"><div class="irreg-inf">za [czas]</div><div class="irreg-part">dentro de [tiempo] <span class="ex-dim">(dentro de dos días)</span></div></div>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ QUIZ -->
+<div class="section" id="tab-quiz">
+<div class="quiz-wrap">
+
+  <div class="filter-rows">
+    <div>
+      <div class="filter-row-label">Tryb</div>
+      <div class="mode-row" id="row-mode">
+        <button class="mode-btn active" onclick="setQMode('all', event)">Wszystkie</button>
+        <button class="mode-btn" onclick="setQMode('regularne', event)">Regularne</button>
+        <button class="mode-btn" onclick="setQMode('nieregularne', event)">Nieregularne</button>
+        <button class="mode-btn" onclick="setQMode('zdanie', event)">Zdania</button>
+      </div>
+    </div>
+    <div id="filter-osoba-wrap" style="display:none">
+      <div class="filter-row-label">Osoba</div>
+      <div class="mode-row" id="row-osoba">
+        <button class="mode-btn active" onclick="setOsobaFilter('all', event)">Wszystkie</button>
+        <button class="mode-btn" onclick="setOsobaFilter('yo', event)">yo</button>
+        <button class="mode-btn" onclick="setOsobaFilter('tú', event)">tú</button>
+        <button class="mode-btn" onclick="setOsobaFilter('él/ella/usted', event)">él/ella/ud.</button>
+        <button class="mode-btn" onclick="setOsobaFilter('nosotros', event)">nosotros</button>
+        <button class="mode-btn" onclick="setOsobaFilter('vosotros', event)">vosotros</button>
+        <button class="mode-btn" onclick="setOsobaFilter('ellos/ellas/ustedes', event)">ellos/uds.</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-row">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">0 / 0</div>
+  </div>
+
+  <div id="quizArea"></div>
+
+</div>
+</div>
+
+</main>
+
+<script src="../shared/quiz.js"></script>
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+
+// Regular verbs: [infinitive, yo, tú, él, nosotros, vosotros, ellos]
+const REGULAR_VERBS = [
+  ["hablar",    "hablaré",    "hablarás",    "hablará",    "hablaremos",    "hablaréis",    "hablarán"],
+  ["comprar",   "compraré",   "comprarás",   "comprará",   "compraremos",   "compraréis",   "comprarán"],
+  ["llegar",    "llegaré",    "llegarás",    "llegará",    "llegaremos",    "llegaréis",    "llegarán"],
+  ["trabajar",  "trabajaré",  "trabajarás",  "trabajará",  "trabajaremos",  "trabajaréis",  "trabajarán"],
+  ["cambiar",   "cambiaré",   "cambiarás",   "cambiará",   "cambiaremos",   "cambiaréis",   "cambiarán"],
+  ["reciclar",  "reciclaré",  "reciclarás",  "reciclará",  "reciclaremos",  "reciclaréis",  "reciclarán"],
+  ["mejorar",   "mejoraré",   "mejorarás",   "mejorará",   "mejoraremos",   "mejoraréis",   "mejorarán"],
+  ["comer",     "comeré",     "comerás",     "comerá",     "comeremos",     "comeréis",     "comerán"],
+  ["beber",     "beberé",     "beberás",     "beberá",     "beberemos",     "beberéis",     "beberán"],
+  ["aprender",  "aprenderé",  "aprenderás",  "aprenderá",  "aprenderemos",  "aprenderéis",  "aprenderán"],
+  ["ver",       "veré",       "verás",       "verá",       "veremos",       "veréis",       "verán"],
+  ["vivir",     "viviré",     "vivirás",     "vivirá",     "viviremos",     "viviréis",     "vivirán"],
+  ["escribir",  "escribiré",  "escribirás",  "escribirá",  "escribiremos",  "escribiréis",  "escribirán"],
+  ["abrir",     "abriré",     "abrirás",     "abrirá",     "abriremos",     "abriréis",     "abrirán"],
+  ["subir",     "subiré",     "subirás",     "subirá",     "subiremos",     "subiréis",     "subirán"],
+];
+
+// Irregular verbs: [infinitive, yo, tú, él, nosotros, vosotros, ellos]
+const IRREG_VERBS = [
+  ["caber",   "cabré",   "cabrás",   "cabrá",   "cabremos",   "cabréis",   "cabrán"],
+  ["poder",   "podré",   "podrás",   "podrá",   "podremos",   "podréis",   "podrán"],
+  ["saber",   "sabré",   "sabrás",   "sabrá",   "sabremos",   "sabréis",   "sabrán"],
+  ["querer",  "querré",  "querrás",  "querrá",  "querremos",  "querréis",  "querrán"],
+  ["haber",   "habré",   "habrás",   "habrá",   "habremos",   "habréis",   "habrán"],
+  ["tener",   "tendré",  "tendrás",  "tendrá",  "tendremos",  "tendréis",  "tendrán"],
+  ["venir",   "vendré",  "vendrás",  "vendrá",  "vendremos",  "vendréis",  "vendrán"],
+  ["salir",   "saldré",  "saldrás",  "saldrá",  "saldremos",  "saldréis",  "saldrán"],
+  ["valer",   "valdré",  "valdrás",  "valdrá",  "valdremos",  "valdréis",  "valdrán"],
+  ["poner",   "pondré",  "pondrás",  "pondrá",  "pondremos",  "pondréis",  "pondrán"],
+  ["decir",   "diré",    "dirás",    "dirá",    "diremos",    "diréis",    "dirán"],
+  ["hacer",   "haré",    "harás",    "hará",    "haremos",    "haréis",    "harán"],
+];
+
+// Sentences to complete
+const ZDANIA = [
+  ["Mañana ___ (llegar, yo) a Madrid a las diez.", "llegaré"],
+  ["¿Qué ___ (hacer, tú) el fin de semana?", "harás"],
+  ["El año que viene nosotros ___ (vivir) en España.", "viviremos"],
+  ["Supongo que Ana ___ (venir) a la fiesta.", "vendrá"],
+  ["Si reciclamos más, ___ (mejorar) el medioambiente.", "mejorará"],
+  ["No sé cuándo ___ (poder, nosotros) ir de vacaciones.", "podremos"],
+  ["Te prometo que ___ (estudiar, yo) más español.", "estudiaré"],
+  ["¿Cuándo ___ (salir, vosotros) de viaje?", "saldréis"],
+  ["Imagino que el esfuerzo ___ (valer) la pena.", "valdrá"],
+  ["___ (Haber) que hacer algo por el medioambiente.", "Habrá"],
+  ["Si comes más verduras, te ___ (sentir) mejor.", "sentirás"],
+  ["Dentro de dos años ellos ___ (terminar) la universidad.", "terminarán"],
+  ["¿Qué ___ (poner, tú) en la maleta?", "pondrás"],
+  ["Creo que mañana ___ (hacer) mucho sol.", "hará"],
+  ["A partir de mañana yo ___ (comprar) productos orgánicos.", "compraré"],
+  ["¿Le ___ (decir, tú) la verdad a tu amigo?", "dirás"],
+  ["El próximo verano nosotros ___ (viajar) a Andalucía.", "viajaremos"],
+  ["No sé si ___ (tener, ellos) tiempo para vernos.", "tendrán"],
+  ["Si separas los residuos, ___ (poder) reciclarlos.", "podrás"],
+  ["Te aseguro que lo ___ (intentar, yo).", "intentaré"],
+];
+
+const PEOPLE  = ["yo", "tú", "él/ella/usted", "nosotros", "vosotros", "ellos/ellas/ustedes"];
+const COL_IDX = [1, 2, 3, 4, 5, 6];
+
+let qMode = 'all', osobaFilter = 'all';
+
+// ─── BUILD CARDS ─────────────────────────────────────────────────────────────
+
+function buildCards() {
+  const list = [];
+
+  // Regular conjugation
+  if (qMode === 'all' || qMode === 'regularne') {
+    REGULAR_VERBS.forEach(v => {
+      PEOPLE.forEach((p, i) => {
+        if (osobaFilter !== 'all' && osobaFilter !== p) return;
+        list.push({
+          prompt: `Odmień w futuro imperfecto:<br><strong>${v[0]}</strong> — ${p}`,
+          answer: v[COL_IDX[i]],
+          hint: 'Futuro imperfecto · regularny'
+        });
+      });
+    });
+  }
+
+  // Irregular conjugation
+  if (qMode === 'all' || qMode === 'nieregularne') {
+    IRREG_VERBS.forEach(v => {
+      PEOPLE.forEach((p, i) => {
+        if (osobaFilter !== 'all' && osobaFilter !== p) return;
+        list.push({
+          prompt: `Odmień w futuro imperfecto:<br><strong>${v[0]}</strong> — ${p}`,
+          answer: v[COL_IDX[i]],
+          hint: 'Futuro imperfecto · nieregularny'
+        });
+      });
+    });
+  }
+
+  // Sentences
+  if (qMode === 'all' || qMode === 'zdanie') {
+    ZDANIA.forEach(([sent, ans]) =>
+      list.push({
+        prompt: sent.replace('___', '<span style="color:var(--gold)">___</span>'),
+        answer: ans,
+        hint: 'Futuro imperfecto · uzupełnij formę'
+      })
+    );
+  }
+
+  return shuffleArray(list);
+}
+
+function updateFilterRows() {
+  const showOsoba = (qMode === 'regularne' || qMode === 'nieregularne' || qMode === 'all');
+  document.getElementById('filter-osoba-wrap').style.display = showOsoba ? 'block' : 'none';
+}
+
+function setQMode(m, e) {
+  qMode = m;
+  osobaFilter = 'all';
+  document.querySelectorAll('#row-mode .mode-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  document.querySelectorAll('#row-osoba .mode-btn').forEach((b, i) => b.classList.toggle('active', i === 0));
+  updateFilterRows();
+  startQuiz();
+}
+
+function setOsobaFilter(o, e) {
+  osobaFilter = o;
+  document.querySelectorAll('#row-osoba .mode-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  startQuiz();
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+
+initQuizEngine({
+  buildCards,
+  punctuationChars: '[¡!¿?]',
+  skipLabel: 'Odpowiedź',
+  scoreMessages: {
+    perfect: '¡Perfecto! Niesamowite!',
+    great: 'Świetnie! Prawie bezbłędnie.',
+    ok: 'Dobrze, ale warto jeszcze poćwiczyć!',
+    bad: 'Jeszcze raz! Ćwiczenie czyni mistrza.'
+  }
+});
+
+startQuiz();
+</script>
+</body>
+</html>
