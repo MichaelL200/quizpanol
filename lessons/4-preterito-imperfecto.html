@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Quizpañol! · Pretérito Imperfecto</title>
+<link rel="stylesheet" href="../shared/styles/main.css">
+<script src="../shared/theme-init.js"></script>
+</head>
+<body>
+
+<header class="global-header" data-home-href="../index.html" data-breadcrumb="Pretérito Imperfecto"></header>
+<script src="../shared/header.js"></script>
+
+<main class="lesson-main">
+<nav class="tabs" aria-label="Widoki lekcji">
+  <button class="tab active" onclick="showTab('theory', this)">📖 Teoria</button>
+  <button class="tab" onclick="showTab('quiz', this)">✏️ Quiz</button>
+</nav>
+
+<!-- Section: theory -->
+<div class="section active" id="tab-theory">
+<div class="theory-wrap">
+
+  <div class="t-label">Budowa czasu</div>
+  <h2>Jak się tworzy?</h2>
+
+  <div class="info-box">
+    <strong>Formuła</strong>
+    <em>bezokolicznik → temat + końcówki imperfecto</em>
+  </div>
+
+  <div class="conj-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="conj-head">Osoba</div>
+    <div class="conj-head">-AR</div>
+    <div class="conj-head">-ER / -IR</div>
+
+    <div class="conj-cell"><span class="pronoun">yo</span></div>
+    <div class="conj-cell"><span class="haber">-aba</span></div>
+    <div class="conj-cell"><span class="haber">-ía</span></div>
+
+    <div class="conj-cell"><span class="pronoun">tú</span></div>
+    <div class="conj-cell"><span class="haber">-abas</span></div>
+    <div class="conj-cell"><span class="haber">-ías</span></div>
+
+    <div class="conj-cell"><span class="pronoun">él/ella/usted</span></div>
+    <div class="conj-cell"><span class="haber">-aba</span></div>
+    <div class="conj-cell"><span class="haber">-ía</span></div>
+
+    <div class="conj-cell"><span class="pronoun">nosotros</span></div>
+    <div class="conj-cell"><span class="haber">-ábamos</span></div>
+    <div class="conj-cell"><span class="haber">-íamos</span></div>
+
+    <div class="conj-cell"><span class="pronoun">vosotros</span></div>
+    <div class="conj-cell"><span class="haber">-abais</span></div>
+    <div class="conj-cell"><span class="haber">-íais</span></div>
+
+    <div class="conj-cell"><span class="pronoun">ellos/ellas/ustedes</span></div>
+    <div class="conj-cell"><span class="haber">-aban</span></div>
+    <div class="conj-cell"><span class="haber">-ían</span></div>
+  </div>
+
+  <div class="t-label mt-lg">Użycie</div>
+  <h2>Kiedy używamy imperfecto?</h2>
+
+  <div class="func-list">
+    <div class="func-item">
+      <span class="func-num">1</span>
+      <span class="func-name">Nawyki i czynności powtarzalne w przeszłości</span>
+      <span class="func-ex">Antes jugábamos todas las tardes.</span>
+    </div>
+    <div class="func-item">
+      <span class="func-num">2</span>
+      <span class="func-name">Opis tła / okoliczności</span>
+      <span class="func-ex">Hacía calor y la gente caminaba.</span>
+    </div>
+    <div class="func-item">
+      <span class="func-num">3</span>
+      <span class="func-name">Wiek, pora, godzina w przeszłości</span>
+      <span class="func-ex">Tenía veinte años. Eran las tres.</span>
+    </div>
+    <div class="func-item">
+      <span class="func-num">4</span>
+      <span class="func-name">Dwie równoległe czynności</span>
+      <span class="func-ex">Mientras ella leía, él estudiaba.</span>
+    </div>
+  </div>
+
+  <div class="t-label mt-lg">Wyjątki / nieregularne</div>
+  <h2>Najważniejsze nieregularne</h2>
+
+  <div class="irreg-grid">
+    <div class="irreg-item"><div class="irreg-inf">ser</div><div class="irreg-part">era, eras, era, éramos, erais, eran</div></div>
+    <div class="irreg-item"><div class="irreg-inf">ir</div><div class="irreg-part">iba, ibas, iba, íbamos, ibais, iban</div></div>
+    <div class="irreg-item"><div class="irreg-inf">ver</div><div class="irreg-part">veía, veías, veía, veíamos, veíais, veían</div></div>
+  </div>
+
+  <div class="note">
+    <strong>Uwaga:</strong> imperfecto nie wskazuje początku ani zakończenia czynności — opisuje jej przebieg lub powtarzalność.
+  </div>
+
+</div>
+</div>
+
+<!-- Section: quiz -->
+<div class="section" id="tab-quiz">
+<div class="quiz-wrap">
+
+  <div class="filter-rows">
+    <div class="mode-row" id="row-mode">
+      <button class="mode-btn active" onclick="setQMode('all', event)">Wszystkie</button>
+      <button class="mode-btn" onclick="setQMode('conjugacion', event)">Odmiana</button>
+      <button class="mode-btn" onclick="setQMode('zdania', event)">Zdania</button>
+    </div>
+    <div id="filter-osoba-wrap">
+      <div class="filter-row-label">Osoba</div>
+      <div class="mode-row" id="row-osoba">
+        <button class="mode-btn active" onclick="setOsobaFilter('all', event)">Wszystkie</button>
+        <button class="mode-btn" onclick="setOsobaFilter('yo', event)">yo</button>
+        <button class="mode-btn" onclick="setOsobaFilter('tú', event)">tú</button>
+        <button class="mode-btn" onclick="setOsobaFilter('él/ella/usted', event)">él/ella/ud.</button>
+        <button class="mode-btn" onclick="setOsobaFilter('nosotros', event)">nosotros</button>
+        <button class="mode-btn" onclick="setOsobaFilter('vosotros', event)">vosotros</button>
+        <button class="mode-btn" onclick="setOsobaFilter('ellos/ellas/ustedes', event)">ellos/uds.</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="progress-row">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">0 / 0</div>
+  </div>
+
+  <div id="quizArea"></div>
+
+</div>
+</div>
+
+</main>
+
+<script src="../shared/quiz.js"></script>
+<script>
+// Regular verbs: [infinitive, yo, tú, él, nosotros, vosotros, ellos]
+const REG_IMPERFECT = [
+  ["hablar","hablaba","hablabas","hablaba","hablábamos","hablabais","hablaban"],
+  ["comer","comía","comías","comía","comíamos","comíais","comían"],
+  ["vivir","vivía","vivías","vivía","vivíamos","vivíais","vivían"],
+  ["jugar","jugaba","jugabas","jugaba","jugábamos","jugabais","jugaban"],
+  ["leer","leía","leías","leía","leíamos","leíais","leían"],
+];
+
+const IRREG_IMPERF = [
+  ["ser","era","eras","era","éramos","erais","eran"],
+  ["ir","iba","ibas","iba","íbamos","ibais","iban"],
+  ["ver","veía","veías","veía","veíamos","veíais","veían"],
+];
+
+const ZDANIA = [
+  ["Cuando era niño, siempre ___ (jugar) en la calle.", "jugaba"],
+  ["Antes, nosotros ___ (ir) a la playa cada verano.", "íbamos"],
+  ["Mientras ella ___ (leer), él cocinaba.", "leía"],
+  ["A las ocho ___ (ser) las luces encendidas.", "eran"],
+  ["Yo ___ (ver) la tele cada noche.", "veía"],
+];
+
+const PEOPLE = ["yo","tú","él/ella/usted","nosotros","vosotros","ellos/ellas/ustedes"];
+const COL_IDX = [1,2,3,4,5,6];
+
+let qMode = 'all', osobaFilter = 'all';
+
+function buildCards() {
+  const list = [];
+
+  if (qMode === 'all' || qMode === 'conjugacion') {
+    REG_IMPERFECT.forEach(v => {
+      PEOPLE.forEach((p,i) => {
+        if (osobaFilter !== 'all' && osobaFilter !== p) return;
+        list.push({ prompt: `Odmień w pretérito imperfecto:<br><strong>${v[0]}</strong> — ${p}`, answer: v[COL_IDX[i]], hint: 'Pretérito imperfecto · odmiana' });
+      });
+    });
+    IRREG_IMPERF.forEach(v => {
+      PEOPLE.forEach((p,i) => {
+        if (osobaFilter !== 'all' && osobaFilter !== p) return;
+        list.push({ prompt: `Odmień w pretérito imperfecto:<br><strong>${v[0]}</strong> — ${p}`, answer: v[COL_IDX[i]], hint: 'Pretérito imperfecto · nieregularne' });
+      });
+    });
+  }
+
+  if (qMode === 'all' || qMode === 'zdania') {
+    ZDANIA.forEach(([sent, ans]) => list.push({ prompt: sent.replace('___','<span style="color:var(--gold)">___</span>'), answer: ans, hint: 'Pretérito imperfecto · uzupełnij' }));
+  }
+
+  return shuffleArray(list);
+}
+
+function setQMode(m, e) {
+  qMode = m;
+  document.querySelectorAll('#row-mode .mode-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  startQuiz();
+}
+
+function setOsobaFilter(o, e) {
+  osobaFilter = o;
+  document.querySelectorAll('#row-osoba .mode-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  startQuiz();
+}
+
+initQuizEngine({ buildCards, punctuationChars: '[¡!¿?]', skipLabel: 'Odpowiedź' });
+startQuiz();
+</script>
+</body>
+</html>
